@@ -16,7 +16,7 @@ const useGetUsers = (query: string) => {
 	return { ...result, users: result.data ?? [] }
 }
 
-const useCreateUser = (oldData: UserData[]) => {
+const useCreateUser = () => {
 	const client = useClient()
 	const queryClient = useQueryClient()
 	return useMutation(
@@ -32,8 +32,10 @@ const useCreateUser = (oldData: UserData[]) => {
 			}),
 		{
 			onSuccess: data => {
-				let newArray = [data, ...oldData]
-				queryClient.setQueriesData(['users'], newArray)
+				queryClient.setQueriesData(
+					['users'],
+					(oldData: UserData[] | undefined) => oldData && [data, ...oldData],
+				)
 			},
 		},
 	)
