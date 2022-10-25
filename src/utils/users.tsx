@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
-import { PostUser } from 'types'
+import { PostUser, UserData } from 'types'
 
 const useGetUsers = (query: string) => {
 	const client = useClient()
@@ -16,7 +16,7 @@ const useGetUsers = (query: string) => {
 	return { ...result, users: result.data ?? [] }
 }
 
-const useCreateUser = () => {
+const useCreateUser = (oldData: UserData[]) => {
 	const client = useClient()
 	const queryClient = useQueryClient()
 	return useMutation(
@@ -32,11 +32,8 @@ const useCreateUser = () => {
 			}),
 		{
 			onSuccess: data => {
-				console.log(data)
-				let oldData = queryClient.getQueriesData(['users'])
-
-				console.log('oldData', oldData)
-				queryClient.setQueriesData(['users'], [data])
+				let newArray = [data, ...oldData]
+				queryClient.setQueriesData(['users'], newArray)
 			},
 		},
 	)

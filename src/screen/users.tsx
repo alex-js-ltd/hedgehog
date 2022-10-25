@@ -11,7 +11,7 @@ const UsersScreen = () => {
 	const [query, setQuery] = useState<string>('1')
 	const { users, error, isLoading, isError, isSuccess } = useGetUsers(query)
 
-	const mutation = useCreateUser()
+	const mutation = useCreateUser(users)
 
 	const post = {
 		email: 'hello@gmail.com',
