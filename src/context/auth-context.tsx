@@ -16,7 +16,7 @@ type AuthProviderProps = { children: ReactNode }
 
 const AuthContext = createContext<
 	| {
-			user: any
+			user: { id?: number; token: string } | null
 			login: Function
 			register: Function
 			logout: MouseEventHandler<HTMLButtonElement>

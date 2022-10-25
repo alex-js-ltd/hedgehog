@@ -4,6 +4,7 @@ import React from 'react'
 import { ReactElement, cloneElement, FormEvent } from 'react'
 import { Button, Input, FormGroup, Spinner, ErrorMessage } from 'comps/library'
 import { Modal, ModalContents, ModalOpenButton } from 'comps/modal'
+import { Logo } from 'comps/logo'
 import { useAuth } from 'context/auth-context'
 import { useAsync } from './utils/useAsync'
 
@@ -76,6 +77,7 @@ const UnauthenticatedApp = () => {
 	return (
 		<div
 			css={{
+				margin: '0 auto',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
@@ -84,7 +86,7 @@ const UnauthenticatedApp = () => {
 				height: '100vh',
 			}}
 		>
-			<h1>Hedgehog</h1>
+			<Logo />
 			<div
 				css={{
 					display: 'grid',
