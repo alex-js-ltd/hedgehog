@@ -138,25 +138,7 @@ const ErrorMessage = ({ error, variant = 'stacked', ...props }: any) => (
 	</div>
 )
 
-const FullPageErrorFallback = ({ error }: { error: Error }) => (
-	<div
-		role='alert'
-		css={{
-			color: colors.danger,
-			height: '100vh',
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			alignItems: 'center',
-		}}
-	>
-		<p>Uh oh... There's a problem. Try refreshing the app.</p>
-		<pre>{error?.message}</pre>
-	</div>
-)
-
 export {
-	FullPageErrorFallback,
 	ErrorMessage,
 	CircleButton,
 	UserListUL,
