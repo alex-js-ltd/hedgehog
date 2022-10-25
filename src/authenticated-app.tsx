@@ -25,7 +25,7 @@ const AuthenticatedApp = () => {
 					color: 'white',
 				}}
 			>
-				{user?.token}
+				{user?.email}
 				<Button
 					variant='secondary'
 					css={{ marginLeft: '10px' }}

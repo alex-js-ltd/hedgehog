@@ -1,4 +1,4 @@
-type User = { id?: number; token: string }
+type User = { id?: number; token: string; email?: string }
 
 type FormData = {
 	email: string

@@ -5,17 +5,24 @@ async function getToken() {
 	return window.localStorage.getItem(localStorageKey)
 }
 
-function handleUserResponse(user: User) {
-	window.localStorage.setItem(localStorageKey, user.token)
-	return user
+function handleResponse(res: User, email: string) {
+	if (!res.token) {
+		return
+	}
+	window.localStorage.setItem(localStorageKey, res.token)
+	return { email, ...res }
 }
 
 function login({ email, password }: FormData) {
-	return client('login', { email, password }).then(handleUserResponse)
+	return client('login', { email, password }).then(res =>
+		handleResponse(res, email),
+	)
 }
 
 function register({ email, password }: FormData) {
-	return client('register', { email, password }).then(handleUserResponse)
+	return client('register', { email, password }).then(res =>
+		handleResponse(res, email),
+	)
 }
 
 async function logout() {
