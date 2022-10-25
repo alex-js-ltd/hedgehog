@@ -17,7 +17,8 @@ const UsersScreen = () => {
 		email: 'hello@gmail.com',
 		first_name: 'hello',
 		last_name: 'hello',
-		avatar: 'hello',
+		avatar:
+			'https://i.picsum.photos/id/10/200/200.jpg?hmac=Pal2P4G4LRZVjNnjESvYwti2SuEi-LJQqUKkQUoZq_g',
 	}
 
 	useEffect(() => {
@@ -28,7 +29,7 @@ const UsersScreen = () => {
 		<div>
 			<div onClick={() => mutation.mutateAsync(post)}>create</div>
 			<UserListUL>
-				{users.map((user: UserData) => (
+				{users?.map((user: UserData) => (
 					<li key={user.id} aria-label={user.email}>
 						<UserRow key={user.id} user={user} />
 					</li>

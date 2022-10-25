@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useQuery, useMutation } from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
 import { PostUser } from 'types'
 
@@ -18,7 +18,7 @@ const useGetUsers = (query: string) => {
 
 const useCreateUser = () => {
 	const client = useClient()
-
+	const queryClient = useQueryClient()
 	return useMutation(
 		({ first_name, last_name, email, avatar }: PostUser) =>
 			client(`users`, {
@@ -33,6 +33,10 @@ const useCreateUser = () => {
 		{
 			onSuccess: data => {
 				console.log(data)
+				let oldData = queryClient.getQueriesData(['users'])
+
+				console.log('oldData', oldData)
+				queryClient.setQueriesData(['users'], [data])
 			},
 		},
 	)
