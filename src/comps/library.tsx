@@ -133,7 +133,7 @@ const ErrorMessage = ({ error, variant = 'stacked', ...props }: any) => (
 				errorMessageVariants[variant],
 			]}
 		>
-			{error?.message}
+			{`${error.error} try using eve.holt@reqres.in`}
 		</pre>
 	</div>
 )
