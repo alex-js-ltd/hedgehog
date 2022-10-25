@@ -19,16 +19,22 @@ const useGetUsers = (query: string) => {
 const useCreateUser = () => {
 	const client = useClient()
 
-	return useMutation(({ first_name, last_name, email, avatar }: PostUser) =>
-		client(`users`, {
-			method: 'POST',
-			data: {
-				first_name,
-				last_name,
-				email,
-				avatar,
+	return useMutation(
+		({ first_name, last_name, email, avatar }: PostUser) =>
+			client(`users`, {
+				method: 'POST',
+				data: {
+					first_name,
+					last_name,
+					email,
+					avatar,
+				},
+			}),
+		{
+			onSuccess: data => {
+				console.log(data)
 			},
-		}),
+		},
 	)
 }
 
