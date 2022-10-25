@@ -1,6 +1,8 @@
+type User = { id?: number; token: string }
+
 type FormData = {
 	email: string
 	password: string
 }
 
-export { FormData }
+export { User, FormData }

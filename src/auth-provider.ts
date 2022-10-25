@@ -1,21 +1,20 @@
-// @ts-nocheck
-
+import { User, FormData } from 'types'
 const localStorageKey = '__auth_provider_token__'
 
 async function getToken() {
 	return window.localStorage.getItem(localStorageKey)
 }
 
-function handleUserResponse(user) {
+function handleUserResponse(user: User) {
 	window.localStorage.setItem(localStorageKey, user.token)
 	return user
 }
 
-function login({ email, password }) {
+function login({ email, password }: FormData) {
 	return client('login', { email, password }).then(handleUserResponse)
 }
 
-function register({ email, password }) {
+function register({ email, password }: FormData) {
 	return client('register', { email, password }).then(handleUserResponse)
 }
 
@@ -25,7 +24,7 @@ async function logout() {
 
 const authURL = process.env.REACT_APP_API_URL
 
-async function client(endpoint, data) {
+async function client(endpoint: string, data: FormData): Promise<User> {
 	const config = {
 		method: 'POST',
 		body: JSON.stringify(data),

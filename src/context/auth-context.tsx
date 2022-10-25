@@ -10,13 +10,13 @@ import React, {
 import { queryClient } from 'context'
 import * as auth from 'auth-provider'
 import { useAsync } from 'utils/useAsync'
-import { FormData } from 'types'
+import { User, FormData } from 'types'
 
 type AuthProviderProps = { children: ReactNode }
 
 const AuthContext = createContext<
 	| {
-			user: { id?: number; token: string } | null
+			user: User | null
 			login: Function
 			register: Function
 			logout: MouseEventHandler<HTMLButtonElement>
