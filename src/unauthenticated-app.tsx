@@ -4,7 +4,7 @@ import React from 'react'
 import { ReactElement, cloneElement, FormEvent } from 'react'
 import { Button, Input, FormGroup, Spinner, ErrorMessage } from 'comps/library'
 import { Modal, ModalContents, ModalOpenButton } from 'comps/modal'
-
+import { useAuth } from 'context/auth-context'
 import { useAsync } from './utils/useAsync'
 
 const LoginForm = ({
@@ -56,14 +56,14 @@ const LoginForm = ({
 				<Input id='password' type='password' />
 			</FormGroup>
 			<div>
-				{/* {cloneElement(
+				{cloneElement(
 					submitButton,
 					{ type: 'submit' },
 					...(Array.isArray(submitButton.props.children)
 						? submitButton.props.children
 						: [submitButton.props.children]),
 					isLoading ? <Spinner css={{ marginLeft: 5 }} /> : null,
-				)} */}
+				)}
 			</div>
 			{isError ? <ErrorMessage error={error} /> : null}
 		</form>
@@ -71,6 +71,8 @@ const LoginForm = ({
 }
 
 const UnauthenticatedApp = () => {
+	const { login, register } = useAuth()
+
 	return (
 		<div
 			css={{
@@ -96,7 +98,7 @@ const UnauthenticatedApp = () => {
 					</ModalOpenButton>
 					<ModalContents aria-label='Login form' title='Login'>
 						<LoginForm
-							onSubmit={() => console.log()}
+							onSubmit={login}
 							submitButton={<Button variant='primary'>Login</Button>}
 						/>
 					</ModalContents>
@@ -107,7 +109,7 @@ const UnauthenticatedApp = () => {
 					</ModalOpenButton>
 					<ModalContents aria-label='Registration form' title='Register'>
 						<LoginForm
-							onSubmit={() => console.log()}
+							onSubmit={register}
 							submitButton={<Button variant='secondary'>Register</Button>}
 						/>
 					</ModalContents>
