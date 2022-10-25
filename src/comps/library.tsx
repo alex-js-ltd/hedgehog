@@ -48,7 +48,7 @@ type ButtonVariant = { primary: CSSObject; secondary: CSSObject }
 
 const buttonVariants: ButtonVariant = {
 	primary: {
-		background: colors.indigo,
+		background: colors.blue,
 		color: colors.base,
 	},
 	secondary: {
