@@ -84,7 +84,7 @@ const NavLink = (props: any) => {
 				},
 				match
 					? {
-							borderLeft: `5px solid ${colors.indigo}`,
+							borderLeft: `5px solid ${colors.green}`,
 							background: colors.gray10,
 							':hover': {
 								background: colors.gray10,
@@ -118,7 +118,7 @@ const Nav = () => (
 			}}
 		>
 			<li>
-				<NavLink to='/list'>Reading List</NavLink>
+				<NavLink to='/'>User List</NavLink>
 			</li>
 		</ul>
 	</nav>

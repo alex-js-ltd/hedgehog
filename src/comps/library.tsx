@@ -29,7 +29,7 @@ const CircleButton = styled.button({
 	cursor: 'pointer',
 })
 
-const BookListUL = styled.ul({
+const UserListUL = styled.ul({
 	listStyle: 'none',
 	padding: '0',
 	display: 'grid',
@@ -159,7 +159,7 @@ export {
 	FullPageErrorFallback,
 	ErrorMessage,
 	CircleButton,
-	BookListUL,
+	UserListUL,
 	Spinner,
 	Button,
 	Input,

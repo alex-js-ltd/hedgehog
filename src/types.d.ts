@@ -5,4 +5,18 @@ type FormData = {
 	password: string
 }
 
-export { User, FormData }
+type Config = {
+	method: 'POST' | 'GET' | 'DELETE'
+	token?: string
+	data?: any
+}
+
+interface UserData {
+	id: number
+	email: string
+	first_name: string
+	last_name: string
+	avatar: string
+}
+
+export { User, FormData, Config, UserData }
