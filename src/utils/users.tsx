@@ -1,7 +1,8 @@
 import React from 'react'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
+import { PostUser } from 'types'
 
 const useGetUsers = (query: string) => {
 	const client = useClient()
@@ -15,4 +16,20 @@ const useGetUsers = (query: string) => {
 	return { ...result, users: result.data ?? [] }
 }
 
-export { useGetUsers }
+const useCreateUser = () => {
+	const client = useClient()
+
+	return useMutation(({ first_name, last_name, email, avatar }: PostUser) =>
+		client(`users`, {
+			method: 'POST',
+			data: {
+				first_name,
+				last_name,
+				email,
+				avatar,
+			},
+		}),
+	)
+}
+
+export { useGetUsers, useCreateUser }

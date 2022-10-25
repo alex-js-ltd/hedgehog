@@ -19,4 +19,11 @@ interface UserData {
 	avatar: string
 }
 
-export { User, FormData, Config, UserData }
+interface PostUser {
+	email: string
+	first_name: string
+	last_name: string
+	avatar?: string
+}
+
+export { User, FormData, Config, UserData, PostUser }
