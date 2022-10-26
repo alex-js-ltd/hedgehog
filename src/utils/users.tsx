@@ -1,19 +1,13 @@
 import React from 'react'
-import { useEffect } from 'react'
-import {
-	useQuery,
-	useMutation,
-	useQueryClient,
-	Updater,
-} from '@tanstack/react-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
 import { PostUser, UserObject, GetUsers } from 'types'
 
 import userPlaceholderSvg from 'assets/user-placeholder.svg'
 
 const loadingUser = {
-	first_name: 'Loading...',
-	last_name: 'loading...',
+	first_name: 'Loading',
+	last_name: '...',
 	avatar: userPlaceholderSvg,
 	email: 'Loading...',
 }
