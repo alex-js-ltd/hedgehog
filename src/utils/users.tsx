@@ -9,6 +9,20 @@ import {
 import { useClient } from 'context/auth-context'
 import { PostUser, UserObject, GetUsers } from 'types'
 
+import userPlaceholderSvg from 'assets/user-placeholder.svg'
+
+const loadingUser = {
+	first_name: 'Loading...',
+	last_name: 'loading...',
+	avatar: userPlaceholderSvg,
+	email: 'Loading...',
+}
+
+const loadingUsers = Array.from({ length: 10 }, (v, index) => ({
+	id: `loading-user-${index}`,
+	...loadingUser,
+}))
+
 const useGetUsers = (query: number) => {
 	const client = useClient()
 
@@ -24,7 +38,7 @@ const useGetUsers = (query: number) => {
 
 	return {
 		...result,
-		users: result.data?.data ?? [],
+		users: result.data?.data ?? loadingUsers,
 		total_pages: result?.data?.total_pages | 0,
 	}
 }
