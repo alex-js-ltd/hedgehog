@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
+import { CircleButton } from './library'
 
 const Pagination = ({
 	total_pages,
@@ -31,15 +32,19 @@ const Pagination = ({
 				marginTop: '1rem',
 			}}
 		>
-			<FaArrowCircleLeft
-				onClick={() => clickLeft()}
-				style={{ opacity: query === 1 ? 0.2 : 1 }}
-			/>
+			<CircleButton>
+				<FaArrowCircleLeft
+					onClick={() => clickLeft()}
+					style={{ opacity: query === 1 ? 0.2 : 1 }}
+				/>
+			</CircleButton>
 
-			<FaArrowCircleRight
-				onClick={() => clickRight()}
-				style={{ opacity: total_pages === query ? 0.2 : 1 }}
-			/>
+			<CircleButton>
+				<FaArrowCircleRight
+					onClick={() => clickRight()}
+					style={{ opacity: total_pages === query ? 0.2 : 1 }}
+				/>
+			</CircleButton>
 		</div>
 	)
 }
