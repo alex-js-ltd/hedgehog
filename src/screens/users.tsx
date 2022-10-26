@@ -6,7 +6,7 @@ import { useGetUsers, useCreateUser } from 'utils/users'
 import { UserListUL, Spinner } from 'comps/library'
 import { UserRow } from 'comps/user-row'
 import { Pagination } from 'comps/pagination'
-import { UserData } from 'types'
+import { UserObject } from 'types'
 
 const UsersScreen = () => {
 	const [query, setQuery] = useState<number>(1)
@@ -31,7 +31,7 @@ const UsersScreen = () => {
 		<div>
 			{/* <div onClick={() => mutation.mutateAsync(post)}>create</div> */}
 			<UserListUL>
-				{users?.map((user: UserData) => (
+				{users?.map((user: UserObject) => (
 					<li key={user.id} aria-label={user.email}>
 						<UserRow key={user.id} user={user} />
 					</li>

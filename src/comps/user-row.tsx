@@ -5,9 +5,9 @@ import * as colors from 'styles/colors'
 
 import { ActionButtons } from './action-buttons'
 
-import { UserData } from 'types'
+import { UserObject } from 'types'
 
-const UserRow = ({ user }: { user: UserData }) => {
+const UserRow = ({ user }: { user: UserObject }) => {
 	const { id, email, first_name, last_name, avatar } = user
 
 	const idString = `${id}`
@@ -83,7 +83,7 @@ const UserRow = ({ user }: { user: UserData }) => {
 					height: '100%',
 				}}
 			>
-				<ActionButtons />
+				<ActionButtons user={user} />
 			</div>
 		</div>
 	)

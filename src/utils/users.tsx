@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
-import { PostUser, UserData } from 'types'
+import { PostUser, UserObject } from 'types'
 
 const useGetUsers = (query: number) => {
 	const client = useClient()
@@ -42,7 +42,7 @@ const useCreateUser = () => {
 			onSuccess: data => {
 				queryClient.setQueriesData(
 					['users'],
-					(oldData: UserData[] | undefined) => oldData && [data, ...oldData],
+					(oldData: UserObject[] | undefined) => oldData && [data, ...oldData],
 				)
 			},
 		},

@@ -11,7 +11,7 @@ type Config = {
 	data?: any
 }
 
-interface UserData {
+type UserObject = {
 	id: number
 	email: string
 	first_name: string
@@ -19,11 +19,11 @@ interface UserData {
 	avatar: string
 }
 
-interface PostUser {
+type PostUser = {
 	email: string
 	first_name: string
 	last_name: string
 	avatar?: string
 }
 
-export { User, FormData, Config, UserData, PostUser }
+export { User, FormData, Config, UserObject, PostUser }

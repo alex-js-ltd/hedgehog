@@ -8,6 +8,8 @@ import * as colors from 'styles/colors'
 import { useAsync } from 'utils/useAsync'
 import { CircleButton, Spinner } from './library'
 
+import { UserObject } from 'types'
+
 function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
 	const { isLoading, isError, error, run } = useAsync()
 
@@ -39,7 +41,7 @@ function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
 	)
 }
 
-const ActionButtons = () => {
+const ActionButtons = ({ user }: { user: UserObject }) => {
 	return (
 		<React.Fragment>
 			<TooltipButton
