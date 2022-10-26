@@ -52,6 +52,7 @@ const useCreateUser = () => {
 const useRemoveUser = (user: UserObject) => {
 	const client = useClient()
 	const queryClient = useQueryClient()
+
 	return useMutation(
 		() =>
 			client(`users/${user.id}`, {
@@ -60,6 +61,20 @@ const useRemoveUser = (user: UserObject) => {
 		{
 			onSuccess: data => {
 				console.log('delete success', data)
+
+				queryClient.setQueriesData(['users'], (oldData: any) => {
+					console.log('old data', oldData)
+
+					let copyData = { ...oldData }
+
+					let userArr = [...copyData.data]
+
+					let filterUserArr = userArr.filter(({ id }) => id !== user.id)
+
+					copyData.data = filterUserArr
+
+					return copyData
+				})
 			},
 		},
 	)
