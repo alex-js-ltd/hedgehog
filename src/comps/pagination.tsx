@@ -31,9 +31,15 @@ const Pagination = ({
 				marginTop: '1rem',
 			}}
 		>
-			<FaArrowCircleLeft onClick={() => clickLeft()} />
+			<FaArrowCircleLeft
+				onClick={() => clickLeft()}
+				style={{ opacity: query === 1 ? 0.2 : 1 }}
+			/>
 
-			<FaArrowCircleRight onClick={() => clickRight()} />
+			<FaArrowCircleRight
+				onClick={() => clickRight()}
+				style={{ opacity: total_pages === query ? 0.2 : 1 }}
+			/>
 		</div>
 	)
 }
