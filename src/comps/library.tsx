@@ -45,6 +45,20 @@ const UserListUL = styled.ul({
 	'li:first-of-type': {
 		marginLeft: '0px',
 	},
+
+	[mq.small]: {
+		maxWidth: 'unset',
+		display: 'grid',
+		gridTemplateRows: 'repeat(auto-fill, minmax(100px, 1fr))',
+		gridGap: '1em',
+		overflow: 'unset',
+
+		li: {
+			flexShrink: 'unnset',
+			width: '100%',
+			marginLeft: '0px',
+		},
+	},
 })
 
 const Spinner = styled(FaSpinner)({
