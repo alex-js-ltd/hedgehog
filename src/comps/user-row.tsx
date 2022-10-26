@@ -3,6 +3,8 @@
 import * as mq from 'styles/media-queries'
 import * as colors from 'styles/colors'
 
+import { ActionButtons } from './action-buttons'
+
 import { UserData } from 'types'
 
 const UserRow = ({ user }: { user: UserData }) => {
@@ -48,10 +50,40 @@ const UserRow = ({ user }: { user: UserData }) => {
 				>
 					<img
 						src={avatar}
-						alt={`${first_name}`}
+						alt={`${email}`}
 						css={{ maxHeight: '100%', width: '100%' }}
 					/>
 				</div>
+				<div css={{ flex: 1 }}>
+					<div css={{ display: 'flex', justifyContent: 'space-between' }}>
+						<div css={{ flex: 1 }}>
+							<h2
+								id={idString}
+								css={{
+									fontSize: '1.25em',
+									margin: '0',
+									color: colors.indigo,
+								}}
+							>
+								{`${first_name + ' ' + last_name}`}
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				css={{
+					marginLeft: '20px',
+					position: 'absolute',
+					right: -20,
+					color: colors.gray80,
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'space-around',
+					height: '100%',
+				}}
+			>
+				<ActionButtons />
 			</div>
 		</div>
 	)
