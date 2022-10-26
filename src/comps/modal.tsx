@@ -61,7 +61,12 @@ const ModalContentsBase = (props: HTMLAttributes<HTMLDivElement>) => {
 	const { isOpen, setIsOpen } = useModal()
 
 	return (
-		<Dialog isOpen={isOpen} onDismiss={() => setIsOpen(false)} {...props} />
+		<Dialog
+			isOpen={isOpen}
+			onDismiss={() => setIsOpen(false)}
+			css={{ minHeight: '405px' }}
+			{...props}
+		/>
 	)
 }
 
