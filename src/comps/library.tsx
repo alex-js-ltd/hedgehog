@@ -139,12 +139,21 @@ const Link = styled(RouterLink)({
 	},
 })
 
-const errorMessageVariants: any = {
+type ErrVariant = { stacked: CSSObject; inline: CSSObject }
+
+const errorMessageVariants: ErrVariant = {
 	stacked: { display: 'block' },
 	inline: { display: 'inline-block' },
 }
 
-const ErrorMessage = ({ error, variant = 'stacked', ...props }: any) => (
+const ErrorMessage = ({
+	error,
+	variant = 'stacked',
+	...props
+}: {
+	error: any
+	variant?: keyof ErrVariant
+}) => (
 	<div
 		role='alert'
 		css={[{ color: colors.danger }, errorMessageVariants[variant]]}

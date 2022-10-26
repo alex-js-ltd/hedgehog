@@ -3,6 +3,7 @@
 import React, { FormEvent } from 'react'
 
 import * as colors from 'styles/colors'
+import * as mq from 'styles/media-queries'
 import { Input, FormGroup, CircleButton, Spinner } from 'comps/library'
 import { FaPlusCircle } from 'react-icons/fa'
 
@@ -21,11 +22,13 @@ const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 			last_name: HTMLInputElement
 		}
 
+		const { email, first_name, last_name } = formElements
+
 		run(
 			onSubmit({
-				email: formElements.email.value,
-				first_name: formElements.first_name.value,
-				last_name: formElements.last_name.value,
+				email: email.value,
+				first_name: first_name.value,
+				last_name: last_name.value,
 				avatar: 'https://miro.medium.com/max/1230/0*vwtmE6kZFO0rIq9o.',
 			}).then(() => form.reset()),
 		)
@@ -40,6 +43,9 @@ const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 				justifyContent: 'flex-end',
 				position: 'relative',
 				width: '550px',
+				[mq.small]: {
+					width: '100%',
+				},
 			}}
 		>
 			<div
@@ -61,16 +67,16 @@ const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 			>
 				<FormGroup>
 					<label htmlFor='email'>Email</label>
-					<Input id='email' />
+					<Input id='email' type='email' required />
 				</FormGroup>
 				<FormGroup>
 					<label htmlFor='first_name'>First Name</label>
-					<Input id='first_name' type='text' />
+					<Input id='first_name' type='text' required />
 				</FormGroup>
 
 				<FormGroup>
 					<label htmlFor='last_name'>Last Name</label>
-					<Input id='last_name' type='text' />
+					<Input id='last_name' type='text' required />
 				</FormGroup>
 			</div>
 			<div
