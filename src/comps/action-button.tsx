@@ -1,19 +1,24 @@
 /** @jsxImportSource @emotion/react */
 
-import * as React from 'react'
+import React, { ReactNode } from 'react'
 import { FaMinusCircle, FaTimesCircle } from 'react-icons/fa'
 import { Tooltip } from '@reach/tooltip'
 
 import * as colors from 'styles/colors'
 import { useAsync } from 'utils/useAsync'
 import { CircleButton, Spinner } from './library'
-import { useRemoveUser } from 'utils/users'
-import { UserObject } from 'types'
 
-function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
+type Props = {
+	label: string
+	highlight: string
+	onClick: Function
+	icon: ReactNode
+}
+
+const ActionButton = ({ label, highlight, onClick, icon, ...rest }: Props) => {
 	const { isLoading, isError, error, run } = useAsync()
 
-	function handleClick() {
+	const handleClick = () => {
 		run(onClick())
 	}
 
@@ -41,18 +46,4 @@ function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
 	)
 }
 
-const ActionButtons = ({ user }: { user: UserObject }) => {
-	const mutation = useRemoveUser(user)
-	return (
-		<React.Fragment>
-			<TooltipButton
-				label='Remove from list'
-				highlight={colors.danger}
-				onClick={() => mutation.mutateAsync()}
-				icon={<FaMinusCircle />}
-			/>
-		</React.Fragment>
-	)
-}
-
-export { ActionButtons }
+export { ActionButton }

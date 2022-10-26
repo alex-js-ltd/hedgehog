@@ -3,7 +3,9 @@
 import * as mq from 'styles/media-queries'
 import * as colors from 'styles/colors'
 
-import { ActionButtons } from './action-buttons'
+import { FaMinusCircle } from 'react-icons/fa'
+import { ActionButton } from './action-button'
+import { useRemoveUser } from 'utils/users'
 
 import { UserObject } from 'types'
 
@@ -11,6 +13,8 @@ const UserRow = ({ user }: { user: UserObject }) => {
 	const { id, email, first_name, last_name, avatar } = user
 
 	const idString = `${id}`
+
+	const mutation = useRemoveUser(user)
 
 	return (
 		<div
@@ -95,7 +99,12 @@ const UserRow = ({ user }: { user: UserObject }) => {
 					height: '100%',
 				}}
 			>
-				<ActionButtons user={user} />
+				<ActionButton
+					label='Remove from list'
+					highlight={colors.danger}
+					onClick={() => mutation.mutateAsync()}
+					icon={<FaMinusCircle />}
+				/>
 			</div>
 		</div>
 	)
