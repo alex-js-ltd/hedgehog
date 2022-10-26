@@ -25,6 +25,7 @@ async function client(
 			return Promise.reject({ message: 'Please re-authenticate.' })
 		}
 
+		// only returning because https://reqres.in/ DELETE req doesn't return any data
 		if (method === 'DELETE') {
 			return
 		}
