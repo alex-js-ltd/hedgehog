@@ -31,7 +31,7 @@ const CircleButton = styled.button({
 
 const UserListUL = styled.ul({
 	maxWidth: '570px',
-	overflow: 'scroll',
+	overflowX: 'scroll',
 	listStyle: 'none',
 	padding: '0',
 	display: 'flex',
@@ -48,15 +48,15 @@ const UserListUL = styled.ul({
 
 	[mq.small]: {
 		maxWidth: 'unset',
-		display: 'grid',
-		gridTemplateRows: 'repeat(auto-fill, minmax(100px, 1fr))',
-		gridGap: '1em',
-		overflow: 'unset',
+
+		flexDirection: 'column',
+		overflowX: 'visible',
 
 		li: {
-			flexShrink: 'unnset',
 			width: '100%',
+			height: '270px',
 			marginLeft: '0px',
+			marginBottom: '1rem',
 		},
 	},
 })
