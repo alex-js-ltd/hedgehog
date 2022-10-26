@@ -7,7 +7,7 @@ import { Tooltip } from '@reach/tooltip'
 import * as colors from 'styles/colors'
 import { useAsync } from 'utils/useAsync'
 import { CircleButton, Spinner } from './library'
-
+import { useRemoveUser } from 'utils/users'
 import { UserObject } from 'types'
 
 function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
@@ -42,12 +42,13 @@ function TooltipButton({ label, highlight, onClick, icon, ...rest }: any) {
 }
 
 const ActionButtons = ({ user }: { user: UserObject }) => {
+	const mutation = useRemoveUser(user)
 	return (
 		<React.Fragment>
 			<TooltipButton
 				label='Remove from list'
 				highlight={colors.danger}
-				onClick={() => console.log('delete')}
+				onClick={() => mutation.mutateAsync()}
 				icon={<FaMinusCircle />}
 			/>
 		</React.Fragment>

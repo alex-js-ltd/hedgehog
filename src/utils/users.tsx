@@ -49,4 +49,20 @@ const useCreateUser = () => {
 	)
 }
 
-export { useGetUsers, useCreateUser }
+const useRemoveUser = (user: UserObject) => {
+	const client = useClient()
+	const queryClient = useQueryClient()
+	return useMutation(
+		() =>
+			client(`users/${user.id}`, {
+				method: 'DELETE',
+			}),
+		{
+			onSuccess: data => {
+				console.log('delete success', data)
+			},
+		},
+	)
+}
+
+export { useGetUsers, useCreateUser, useRemoveUser }

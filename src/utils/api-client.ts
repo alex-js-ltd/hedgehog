@@ -24,6 +24,10 @@ async function client(
 			window.location.assign(window.location.href)
 			return Promise.reject({ message: 'Please re-authenticate.' })
 		}
+
+		if (method === 'DELETE') {
+			return
+		}
 		const data = await response.json()
 
 		if (response.ok) {
