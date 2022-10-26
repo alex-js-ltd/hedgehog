@@ -61,7 +61,19 @@ const useCreateUser = () => {
 			onSuccess: data => {
 				queryClient.setQueriesData(
 					['users'],
-					(oldData: UserObject[] | undefined) => oldData && [data, ...oldData],
+					(oldData: GetUsers | undefined) => {
+						if (!oldData) return
+
+						let copyData = { ...oldData }
+
+						let userArr = [...copyData.data]
+
+						let newArr = [data, ...userArr]
+
+						copyData.data = newArr
+
+						return copyData
+					},
 				)
 			},
 		},

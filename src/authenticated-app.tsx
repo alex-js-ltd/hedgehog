@@ -60,7 +60,7 @@ const AuthenticatedApp = () => {
 	)
 }
 
-const NavLink = (props: HTMLAttributes<HTMLDivElement>) => {
+const NavLabel = (props: HTMLAttributes<HTMLDivElement>) => {
 	return (
 		<div
 			css={[
@@ -106,7 +106,7 @@ const Nav = () => (
 			}}
 		>
 			<li>
-				<NavLink>User List</NavLink>
+				<NavLabel>User List</NavLabel>
 			</li>
 		</ul>
 	</nav>

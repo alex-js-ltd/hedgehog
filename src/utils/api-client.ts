@@ -28,6 +28,7 @@ async function client(
 		if (method === 'DELETE') {
 			return
 		}
+
 		const data = await response.json()
 
 		if (response.ok) {
