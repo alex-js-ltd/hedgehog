@@ -156,18 +156,10 @@ const ErrorMessage = ({
 }) => (
 	<div
 		role='alert'
-		css={[{ color: colors.danger }, errorMessageVariants[variant]]}
+		css={[{ color: colors.pink }, errorMessageVariants[variant]]}
 		{...props}
 	>
-		<span>There was an error: </span>
-		<pre
-			css={[
-				{ whiteSpace: 'break-spaces', margin: '0' },
-				errorMessageVariants[variant],
-			]}
-		>
-			{error.error}
-		</pre>
+		{error?.error}
 	</div>
 )
 
