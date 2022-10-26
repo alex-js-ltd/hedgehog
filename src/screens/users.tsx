@@ -1,18 +1,22 @@
 /** @jsxImportSource @emotion/react */
 
 import React, { useState, useEffect } from 'react'
-import { useGetUsers } from 'utils/users'
+import { useGetUsers, useCreateUser } from 'utils/users'
 
 import { UserListUL } from 'comps/library'
 import { UserRow } from 'comps/user-row'
 import { Pagination } from 'comps/pagination'
 import { CreateUser } from 'comps/create-user'
-import { UserObject } from 'types'
+import { UserObject, PostUser } from 'types'
 
 const UsersScreen = () => {
 	const [query, setQuery] = useState<number>(1)
-	const { users, error, isLoading, isError, isSuccess, total_pages } =
-		useGetUsers(query)
+
+	const { users, total_pages } = useGetUsers(query)
+
+	const mutation = useCreateUser()
+
+	const onSubmit = (data: PostUser) => mutation.mutateAsync(data)
 
 	return (
 		<div>
@@ -24,9 +28,15 @@ const UsersScreen = () => {
 				))}
 			</UserListUL>
 
-			<Pagination total_pages={total_pages} query={query} setQuery={setQuery} />
+			{users?.length === 0 ? null : (
+				<Pagination
+					total_pages={total_pages}
+					query={query}
+					setQuery={setQuery}
+				/>
+			)}
 
-			<CreateUser />
+			<CreateUser onSubmit={onSubmit} />
 		</div>
 	)
 }

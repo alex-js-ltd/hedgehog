@@ -33,7 +33,7 @@ const useGetUsers = (query: number) => {
 	})
 
 	useEffect(() => {
-		console.log(result.data)
+		console.log('users', result?.data?.data)
 	}, [result.data])
 
 	return {

@@ -14,7 +14,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 
 	const idString = `${id}`
 
-	const mutation = useRemoveUser(user)
+	const remove = useRemoveUser(user)
 
 	return (
 		<div
@@ -102,7 +102,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 				<ActionButton
 					label='Remove from list'
 					highlight={colors.danger}
-					onClick={() => mutation.mutateAsync()}
+					onClick={() => remove.mutateAsync()}
 					icon={<FaMinusCircle />}
 				/>
 			</div>

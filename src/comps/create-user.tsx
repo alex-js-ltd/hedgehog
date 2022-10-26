@@ -1,30 +1,39 @@
 /** @jsxImportSource @emotion/react */
 
-import React from 'react'
-import { useGetUsers, useCreateUser } from 'utils/users'
+import React, { FormEvent } from 'react'
+
 import * as colors from 'styles/colors'
-import {
-	Button,
-	Input,
-	FormGroup,
-	Spinner,
-	ErrorMessage,
-	CircleButton,
-} from 'comps/library'
+import { Input, FormGroup, CircleButton, Spinner } from 'comps/library'
+import { FaPlusCircle } from 'react-icons/fa'
 
-const CreateUser = () => {
-	const mutation = useCreateUser()
+import { useAsync } from 'utils/useAsync'
 
-	const post = {
-		email: 'hello@gmail.com',
-		first_name: 'hello',
-		last_name: 'hello',
-		avatar:
-			'https://i.picsum.photos/id/10/200/200.jpg?hmac=Pal2P4G4LRZVjNnjESvYwti2SuEi-LJQqUKkQUoZq_g',
+const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
+	const { isLoading, isError, error, run } = useAsync()
+
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		const form = event.currentTarget
+
+		const formElements = form.elements as typeof form.elements & {
+			email: HTMLInputElement
+			first_name: HTMLInputElement
+			last_name: HTMLInputElement
+		}
+
+		run(
+			onSubmit({
+				email: formElements.email.value,
+				first_name: formElements.first_name.value,
+				last_name: formElements.last_name.value,
+				avatar: 'https://miro.medium.com/max/1230/0*vwtmE6kZFO0rIq9o.',
+			}).then(() => form.reset()),
+		)
 	}
 
 	return (
-		<div
+		<form
+			onSubmit={handleSubmit}
 			css={{
 				display: 'flex',
 				alignItems: 'center',
@@ -48,7 +57,6 @@ const CreateUser = () => {
 						maxWidth: '300px',
 					},
 				}}
-				onClick={() => mutation.mutateAsync(post)}
 			>
 				<FormGroup>
 					<label htmlFor='email'>Email</label>
@@ -76,9 +84,11 @@ const CreateUser = () => {
 					height: '100%',
 				}}
 			>
-				<CircleButton />
+				<CircleButton type='submit'>
+					{isLoading ? <Spinner /> : <FaPlusCircle />}
+				</CircleButton>
 			</div>
-		</div>
+		</form>
 	)
 }
 
