@@ -27,6 +27,18 @@ const AuthContext = createContext<
 
 AuthContext.displayName = 'AuthContext'
 
+const getUser = async () => {
+	console.log('getUser')
+	const res = await auth.getToken()
+	if (!res) return null
+	let user = JSON.parse(res)
+
+	return user
+}
+
+// fetch user before auth provider mounts persist user data
+const userPromise = getUser()
+
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const {
 		data: user,
@@ -34,6 +46,15 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		run,
 		setData,
 	} = useAsync()
+
+	useEffect(() => {
+		console.log('useEffect')
+		run(userPromise)
+	}, [run])
+
+	useEffect(() => {
+		console.log('user', user)
+	}, [user])
 
 	const login = useCallback(
 		(form: FormData) => auth.login(form).then(user => setData(user)),

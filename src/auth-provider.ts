@@ -9,8 +9,12 @@ function handleResponse(res: User, email: string) {
 	if (!res.token) {
 		return
 	}
-	window.localStorage.setItem(localStorageKey, res.token)
-	return { email, ...res }
+
+	let user = { email, ...res }
+
+	window.localStorage.setItem(localStorageKey, JSON.stringify(user))
+
+	return user
 }
 
 function login({ email, password }: FormData) {
