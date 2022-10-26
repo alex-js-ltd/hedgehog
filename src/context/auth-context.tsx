@@ -27,8 +27,6 @@ const AuthContext = createContext<
 
 AuthContext.displayName = 'AuthContext'
 
-// fetch user before auth provider mounts
-
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const {
 		data: user,

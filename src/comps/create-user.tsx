@@ -9,7 +9,7 @@ import { FaPlusCircle } from 'react-icons/fa'
 import { useAsync } from 'utils/useAsync'
 
 const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
-	const { isLoading, isError, error, run } = useAsync()
+	const { isLoading, run } = useAsync()
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -39,6 +39,7 @@ const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 				alignItems: 'center',
 				justifyContent: 'flex-end',
 				position: 'relative',
+				width: '550px',
 			}}
 		>
 			<div

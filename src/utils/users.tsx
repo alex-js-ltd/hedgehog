@@ -32,10 +32,6 @@ const useGetUsers = (query: number) => {
 			client(`users?page=${query}`, { method: 'GET' }).then(res => res),
 	})
 
-	useEffect(() => {
-		console.log('users', result?.data?.data)
-	}, [result.data])
-
 	return {
 		...result,
 		users: result.data?.data ?? loadingUsers,
