@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
-import { Link } from 'react-router-dom'
-
 import * as mq from 'styles/media-queries'
 import * as colors from 'styles/colors'
 
@@ -9,6 +7,8 @@ import { UserData } from 'types'
 
 const UserRow = ({ user }: { user: UserData }) => {
 	const { id, email, first_name, last_name, avatar } = user
+
+	const idString = `${id}`
 
 	return (
 		<div
@@ -19,9 +19,8 @@ const UserRow = ({ user }: { user: UserData }) => {
 				position: 'relative',
 			}}
 		>
-			<Link
-				aria-labelledby={`${id}`}
-				to={`/user/${id}`}
+			<div
+				aria-labelledby={idString}
 				css={{
 					minHeight: 270,
 					flexGrow: 2,
@@ -53,7 +52,7 @@ const UserRow = ({ user }: { user: UserData }) => {
 						css={{ maxHeight: '100%', width: '100%' }}
 					/>
 				</div>
-			</Link>
+			</div>
 		</div>
 	)
 }

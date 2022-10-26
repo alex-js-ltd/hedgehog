@@ -7,6 +7,7 @@ import { Modal, ModalContents, ModalOpenButton } from 'comps/modal'
 import { Logo } from 'comps/logo'
 import { useAuth } from 'context/auth-context'
 import { useAsync } from './utils/useAsync'
+import * as colors from 'styles/colors'
 
 const LoginForm = ({
 	onSubmit,
@@ -84,6 +85,7 @@ const UnauthenticatedApp = () => {
 				justifyContent: 'center',
 				width: '100%',
 				height: '100vh',
+				background: colors.darkBlue,
 			}}
 		>
 			<Logo />
