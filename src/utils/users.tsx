@@ -55,7 +55,7 @@ const useCreateUser = () => {
 						if (!oldData) return
 
 						if (oldData?.data.some(e => e.email === data.email)) {
-							return
+							return oldData
 						}
 
 						let copyData = { ...oldData }
