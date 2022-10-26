@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 
-import * as React from 'react'
-import { Routes, Route, Link, useMatch } from 'react-router-dom'
+import React, { HTMLAttributes } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { Button } from 'comps/library'
 import * as mq from 'styles/media-queries'
 import * as colors from 'styles/colors'
 
 import { useAuth } from 'context/auth-context'
 
-import { UsersScreen } from 'screen/users'
+import { UsersScreen } from 'screens/users'
 
 const AuthenticatedApp = () => {
 	const { user, logout } = useAuth()
@@ -60,11 +60,9 @@ const AuthenticatedApp = () => {
 	)
 }
 
-const NavLink = (props: any) => {
-	const match = useMatch(props.to)
-
+const NavLink = (props: HTMLAttributes<HTMLDivElement>) => {
 	return (
-		<Link
+		<div
 			css={[
 				{
 					display: 'block',
@@ -74,22 +72,13 @@ const NavLink = (props: any) => {
 					height: '100%',
 					color: colors.text,
 					borderRadius: '2px',
-					borderLeft: '5px solid transparent',
+
+					borderLeft: `5px solid ${colors.green}`,
+					background: colors.gray10,
 					':hover': {
-						color: colors.indigo,
-						textDecoration: 'none',
 						background: colors.gray10,
 					},
 				},
-				match
-					? {
-							borderLeft: `5px solid ${colors.green}`,
-							background: colors.gray10,
-							':hover': {
-								background: colors.gray10,
-							},
-					  }
-					: null,
 			]}
 			{...props}
 		/>
@@ -117,7 +106,7 @@ const Nav = () => (
 			}}
 		>
 			<li>
-				<NavLink to='/'>User List</NavLink>
+				<NavLink>User List</NavLink>
 			</li>
 		</ul>
 	</nav>

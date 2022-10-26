@@ -5,11 +5,13 @@ import { useGetUsers, useCreateUser } from 'utils/users'
 
 import { UserListUL, Spinner } from 'comps/library'
 import { UserRow } from 'comps/user-row'
+import { Pagination } from 'comps/pagination'
 import { UserData } from 'types'
 
 const UsersScreen = () => {
-	const [query, setQuery] = useState<string>('1')
-	const { users, error, isLoading, isError, isSuccess } = useGetUsers(query)
+	const [query, setQuery] = useState<number>(1)
+	const { users, error, isLoading, isError, isSuccess, total_pages } =
+		useGetUsers(query)
 
 	const mutation = useCreateUser()
 
@@ -27,7 +29,7 @@ const UsersScreen = () => {
 
 	return (
 		<div>
-			<div onClick={() => mutation.mutateAsync(post)}>create</div>
+			{/* <div onClick={() => mutation.mutateAsync(post)}>create</div> */}
 			<UserListUL>
 				{users?.map((user: UserData) => (
 					<li key={user.id} aria-label={user.email}>
@@ -35,6 +37,8 @@ const UsersScreen = () => {
 					</li>
 				))}
 			</UserListUL>
+
+			<Pagination total_pages={total_pages} query={query} setQuery={setQuery} />
 		</div>
 	)
 }

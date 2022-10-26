@@ -1,19 +1,27 @@
 import React from 'react'
-
+import { useEffect } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
 import { PostUser, UserData } from 'types'
 
-const useGetUsers = (query: string) => {
+const useGetUsers = (query: number) => {
 	const client = useClient()
 
 	const result = useQuery({
 		queryKey: ['users', { query }],
 		queryFn: () =>
-			client(`users?page=${query}`, { method: 'GET' }).then(res => res.data),
+			client(`users?page=${query}`, { method: 'GET' }).then(res => res),
 	})
 
-	return { ...result, users: result.data ?? [] }
+	useEffect(() => {
+		console.log(result.data)
+	}, [result.data])
+
+	return {
+		...result,
+		users: result.data?.data ?? [],
+		total_pages: result?.data?.total_pages | 0,
+	}
 }
 
 const useCreateUser = () => {
