@@ -29,7 +29,7 @@ const Pagination = ({
 			css={{
 				display: 'flex',
 				justifyContent: 'space-between',
-				marginTop: '1rem',
+				margin: '1rem 0',
 			}}
 		>
 			<CircleButton>

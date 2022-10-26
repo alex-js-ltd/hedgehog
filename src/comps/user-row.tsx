@@ -68,6 +68,18 @@ const UserRow = ({ user }: { user: UserObject }) => {
 								{`${first_name + ' ' + last_name}`}
 							</h2>
 						</div>
+
+						<div css={{ marginLeft: 10 }}>
+							<div
+								css={{
+									marginTop: '0.4em',
+									fontStyle: 'italic',
+									fontSize: '0.85em',
+								}}
+							>
+								{email}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
