@@ -42,6 +42,7 @@ const LoginForm = ({
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'stretch',
+
 				'> div': {
 					margin: '10px auto',
 					width: '100%',

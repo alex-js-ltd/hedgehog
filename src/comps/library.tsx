@@ -148,7 +148,7 @@ const errorMessageVariants: ErrVariant = {
 
 const ErrorMessage = ({
 	error,
-	variant = 'stacked',
+	variant = 'inline',
 	...props
 }: {
 	error: any
@@ -162,11 +162,11 @@ const ErrorMessage = ({
 		<span>There was an error: </span>
 		<pre
 			css={[
-				{ whiteSpace: 'break-spaces', margin: '0', marginBottom: -5 },
+				{ whiteSpace: 'break-spaces', margin: '0' },
 				errorMessageVariants[variant],
 			]}
 		>
-			{`${error.error} try using eve.holt@reqres.in`}
+			{error.error}
 		</pre>
 	</div>
 )

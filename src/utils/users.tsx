@@ -54,10 +54,6 @@ const useCreateUser = () => {
 					(oldData: GetUsers | undefined) => {
 						if (!oldData) return
 
-						if (oldData?.data.some(e => e.email === data.email)) {
-							return oldData
-						}
-
 						let copyData = { ...oldData }
 
 						let userArr = [...copyData.data]

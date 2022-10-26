@@ -85,6 +85,11 @@ function useAsync() {
 		[dispatch],
 	)
 
+	const setError = useCallback(
+		(error: any) => dispatch({ type: 'rejected', error }),
+		[dispatch],
+	)
+
 	return {
 		// using the same names that react-query uses for convenience
 		isIdle: status === 'idle',
@@ -93,6 +98,7 @@ function useAsync() {
 		isSuccess: status === 'resolved',
 
 		setData,
+		setError,
 		error,
 		status,
 		data,

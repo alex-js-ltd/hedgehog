@@ -36,7 +36,7 @@ const UsersScreen = () => {
 				/>
 			)}
 
-			<CreateUser onSubmit={onSubmit} />
+			<CreateUser onSubmit={onSubmit} users={users} />
 		</div>
 	)
 }
