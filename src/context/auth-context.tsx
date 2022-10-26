@@ -35,10 +35,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		setData,
 	} = useAsync()
 
-	useEffect(() => {
-		console.log('user', user)
-	}, [user])
-
 	const login = useCallback(
 		(form: FormData) => auth.login(form).then(user => setData(user)),
 		[setData],
