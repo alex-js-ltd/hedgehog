@@ -26,4 +26,18 @@ type PostUser = {
 	avatar?: string
 }
 
-export { User, FormData, Config, UserObject, PostUser }
+type GetUsers = {
+	page: number
+	per_page: number
+	total: number
+	total_pages: number
+	data: UserObject[]
+	support: Support
+}
+
+type Support = {
+	url: string
+	text: string
+}
+
+export { User, FormData, Config, UserObject, PostUser, GetUsers }

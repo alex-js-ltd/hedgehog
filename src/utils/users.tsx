@@ -1,8 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import {
+	useQuery,
+	useMutation,
+	useQueryClient,
+	Updater,
+} from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
-import { PostUser, UserObject } from 'types'
+import { PostUser, UserObject, GetUsers } from 'types'
 
 const useGetUsers = (query: number) => {
 	const client = useClient()
@@ -59,22 +64,23 @@ const useRemoveUser = (user: UserObject) => {
 				method: 'DELETE',
 			}),
 		{
-			onSuccess: data => {
-				console.log('delete success', data)
+			onSuccess: () => {
+				queryClient.setQueriesData(
+					['users'],
+					(oldData: GetUsers | undefined) => {
+						if (!oldData) return
 
-				queryClient.setQueriesData(['users'], (oldData: any) => {
-					console.log('old data', oldData)
+						let copyData = { ...oldData }
 
-					let copyData = { ...oldData }
+						let userArr = [...copyData.data]
 
-					let userArr = [...copyData.data]
+						let filterUserArr = userArr.filter(({ id }) => id !== user.id)
 
-					let filterUserArr = userArr.filter(({ id }) => id !== user.id)
+						copyData.data = filterUserArr
 
-					copyData.data = filterUserArr
-
-					return copyData
-				})
+						return copyData
+					},
+				)
 			},
 		},
 	)
