@@ -9,6 +9,13 @@ import { FaPlusCircle } from 'react-icons/fa'
 
 import { useAsync } from 'utils/useAsync'
 
+const avatarArr = [
+	'https://helios-i.mashable.com/imagery/articles/072lIcNUyX8S7dErUXzHLuN/hero-image.fill.size_1248x702.v1623382106.jpg',
+	'https://miro.medium.com/max/1230/0*vwtmE6kZFO0rIq9o.',
+	'https://cdn.britannica.com/66/218266-050-77C3D624/Cookie-Monster-Sesame-Street-2016.jpg',
+	'https://s.yimg.com/uu/api/res/1.2/994pBpnIKvwRQvU1RiAZzw--~B/Zmk9ZmlsbDtoPTM4Nzt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/Rh_OFEz8Hm2j5EA.2w5IkA--~B/aD01NTA7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/hss/storage/midas/e783c0c4a79dd1a9ceedb1090f52050e/201561495/cookie_monster_engadget_lede.png.cf.webp',
+]
+
 const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 	const { isLoading, run } = useAsync()
 
@@ -29,7 +36,7 @@ const CreateUser = ({ onSubmit }: { onSubmit: Function }) => {
 				email: email.value,
 				first_name: first_name.value,
 				last_name: last_name.value,
-				avatar: 'https://miro.medium.com/max/1230/0*vwtmE6kZFO0rIq9o.',
+				avatar: avatarArr[Math.floor(Math.random() * avatarArr.length)],
 			}).then(() => form.reset()),
 		)
 	}
