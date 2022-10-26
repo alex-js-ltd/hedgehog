@@ -30,11 +30,21 @@ const CircleButton = styled.button({
 })
 
 const UserListUL = styled.ul({
+	maxWidth: '570px',
+	overflow: 'scroll',
 	listStyle: 'none',
 	padding: '0',
-	display: 'grid',
-	gridTemplateRows: 'repeat(auto-fill, minmax(100px, 1fr))',
-	gridGap: '1em',
+	display: 'flex',
+
+	li: {
+		flexShrink: 0,
+		width: '550px',
+		marginLeft: '40px',
+	},
+
+	'li:first-of-type': {
+		marginLeft: '0px',
+	},
 })
 
 const Spinner = styled(FaSpinner)({
