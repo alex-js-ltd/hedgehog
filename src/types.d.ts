@@ -40,4 +40,4 @@ type Support = {
 	text: string
 }
 
-export { User, FormData, Config, UserObject, PostUser, GetUsers }
+export type { User, FormData, Config, UserObject, PostUser, GetUsers }

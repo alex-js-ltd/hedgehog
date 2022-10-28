@@ -2,6 +2,7 @@
 
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 import { CircleButton } from './library'
+import * as mq from 'styles/media-queries'
 
 const Pagination = ({
 	total_pages,
@@ -31,6 +32,9 @@ const Pagination = ({
 				justifyContent: 'space-between',
 				margin: '1rem 0',
 				maxWidth: '570px',
+				[mq.small]: {
+					maxWidth: '100%',
+				},
 			}}
 		>
 			<CircleButton>
