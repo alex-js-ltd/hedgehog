@@ -68,7 +68,7 @@ const CreateUser = ({
 					alignItems: 'center',
 					justifyContent: 'flex-end',
 					position: 'relative',
-					width: '550px',
+					width: '570px',
 					[mq.small]: {
 						width: '100%',
 					},
