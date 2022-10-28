@@ -9,7 +9,7 @@ import { useAuth } from 'context/auth-context'
 import { useAsync } from './utils/useAsync'
 import * as colors from 'styles/colors'
 
-const LoginForm = ({
+export const LoginForm = ({
 	onSubmit,
 	submitButton,
 }: {
