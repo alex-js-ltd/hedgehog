@@ -22,7 +22,7 @@ async function client(
 			await auth.logout()
 			// refresh the page for them
 			window.location.assign(window.location.href)
-			return Promise.reject({ message: 'Please re-authenticate.' })
+			return Promise.reject('Please re-authenticate.')
 		}
 
 		// only returning because https://reqres.in/ DELETE req doesn't return any data
