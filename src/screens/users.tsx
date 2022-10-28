@@ -12,7 +12,7 @@ import { UserObject } from 'types'
 const UsersScreen = () => {
 	const [query, setQuery] = useState<number>(1)
 
-	const { users, total_pages } = useGetUsers(query)
+	const { users, total_pages, isLoading } = useGetUsers(query)
 
 	return (
 		<div>
@@ -26,6 +26,7 @@ const UsersScreen = () => {
 
 			{users?.length === 0 ? null : (
 				<Pagination
+					isLoading={isLoading}
 					total_pages={total_pages}
 					query={query}
 					setQuery={setQuery}

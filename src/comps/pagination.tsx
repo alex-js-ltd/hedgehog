@@ -1,17 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
-import { CircleButton } from './library'
+import { CircleButton, Spinner } from './library'
 import * as mq from 'styles/media-queries'
 
 const Pagination = ({
 	total_pages,
 	query,
 	setQuery,
+	isLoading,
 }: {
 	total_pages: number
 	query: number
 	setQuery: Function
+	isLoading: boolean
 }) => {
 	const clickLeft = () => {
 		if (query > 1) {
@@ -37,18 +39,18 @@ const Pagination = ({
 				},
 			}}
 		>
-			<CircleButton>
-				<FaArrowCircleLeft
-					onClick={() => clickLeft()}
-					css={{ opacity: query === 1 ? 0.2 : 1 }}
-				/>
+			<CircleButton
+				onClick={() => clickLeft()}
+				css={{ opacity: query === 1 ? 0.2 : 1 }}
+			>
+				{isLoading ? <Spinner /> : <FaArrowCircleLeft />}
 			</CircleButton>
 
-			<CircleButton>
-				<FaArrowCircleRight
-					onClick={() => clickRight()}
-					css={{ opacity: total_pages === query ? 0.2 : 1 }}
-				/>
+			<CircleButton
+				onClick={() => clickRight()}
+				css={{ opacity: total_pages === query ? 0.2 : 1 }}
+			>
+				{isLoading ? <Spinner /> : <FaArrowCircleRight />}
 			</CircleButton>
 		</div>
 	)
