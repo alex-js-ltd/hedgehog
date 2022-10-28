@@ -30,19 +30,20 @@ const Pagination = ({
 				display: 'flex',
 				justifyContent: 'space-between',
 				margin: '1rem 0',
+				maxWidth: '570px',
 			}}
 		>
 			<CircleButton>
 				<FaArrowCircleLeft
 					onClick={() => clickLeft()}
-					style={{ opacity: query === 1 ? 0.2 : 1 }}
+					css={{ opacity: query === 1 ? 0.2 : 1 }}
 				/>
 			</CircleButton>
 
 			<CircleButton>
 				<FaArrowCircleRight
 					onClick={() => clickRight()}
-					style={{ opacity: total_pages === query ? 0.2 : 1 }}
+					css={{ opacity: total_pages === query ? 0.2 : 1 }}
 				/>
 			</CircleButton>
 		</div>

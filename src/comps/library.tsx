@@ -30,7 +30,7 @@ const CircleButton = styled.button({
 })
 
 const UserListUL = styled.ul({
-	maxWidth: '570px',
+	maxWidth: '590px',
 	overflowX: 'scroll',
 	listStyle: 'none',
 	padding: '0',
@@ -38,7 +38,7 @@ const UserListUL = styled.ul({
 
 	li: {
 		flexShrink: 0,
-		width: '550px',
+		width: '570px',
 		marginLeft: '40px',
 	},
 
