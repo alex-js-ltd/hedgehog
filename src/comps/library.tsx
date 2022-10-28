@@ -30,7 +30,7 @@ const CircleButton = styled.button({
 })
 
 const UserListUL = styled.ul({
-	maxWidth: '590px',
+	width: '590px',
 	overflowX: 'scroll',
 	listStyle: 'none',
 	padding: '0',
