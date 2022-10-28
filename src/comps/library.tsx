@@ -151,7 +151,7 @@ const ErrorMessage = ({
 	variant = 'inline',
 	...props
 }: {
-	error: any
+	error: string | null
 	variant?: keyof ErrVariant
 }) => (
 	<div
@@ -159,7 +159,7 @@ const ErrorMessage = ({
 		css={[{ color: colors.pink }, errorMessageVariants[variant]]}
 		{...props}
 	>
-		{error?.error}
+		{error}
 	</div>
 )
 

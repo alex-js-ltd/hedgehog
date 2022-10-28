@@ -45,7 +45,7 @@ const CreateUser = ({
 		const { email, first_name, last_name } = formElements
 
 		if (users?.some(e => e.email === email.value)) {
-			setError({ error: 'email already in use' })
+			setError('email already in use')
 			return
 		}
 

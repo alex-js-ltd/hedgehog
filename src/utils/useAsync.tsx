@@ -9,14 +9,14 @@ import {
 type Action =
 	| { type: 'pending' }
 	| { type: 'resolved'; data: any }
-	| { type: 'rejected'; error: Error }
+	| { type: 'rejected'; error: string }
 	| { type: undefined }
 
 type State =
 	| {
 			status: 'idle' | 'pending' | 'resolved' | 'rejected'
 			data: any
-			error: Error | null
+			error: string | null
 	  }
 	| {}
 
@@ -86,7 +86,7 @@ function useAsync() {
 	)
 
 	const setError = useCallback(
-		(error: any) => dispatch({ type: 'rejected', error }),
+		(error: string) => dispatch({ type: 'rejected', error }),
 		[dispatch],
 	)
 
