@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode } from 'react'
 import { render as rtlRender } from '@testing-library/react'
 import { AppProviders } from 'context'
 
-const render = (ui: ReactElement, { theme = 'light', ...options } = {}) => {
+const render = (ui: ReactElement, { ...options } = {}) => {
 	const Wrapper = ({ children }: { children: ReactNode }) => {
 		return <AppProviders>{children}</AppProviders>
 	}
