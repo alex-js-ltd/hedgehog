@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
+import { useAsync } from './useAsync'
 import { PostUser, UserObject, GetUsers } from 'types'
 
 import userPlaceholderSvg from 'assets/user-placeholder.svg'
@@ -36,7 +37,7 @@ const useGetUsers = (query: number) => {
 const useCreateUser = () => {
 	const client = useClient()
 	const queryClient = useQueryClient()
-	return useMutation(
+	const mutation = useMutation(
 		({ first_name, last_name, email, avatar }: PostUser) =>
 			client(`users`, {
 				method: 'POST',
@@ -68,6 +69,12 @@ const useCreateUser = () => {
 			},
 		},
 	)
+
+	const onSubmit = (data: PostUser) => mutation.mutateAsync(data)
+
+	const { isLoading, run, setError, error, isError } = useAsync()
+
+	return { onSubmit, isLoading, run, setError, error, isError }
 }
 
 const useRemoveUser = (user: UserObject) => {

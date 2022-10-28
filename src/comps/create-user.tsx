@@ -13,7 +13,7 @@ import {
 } from 'comps/library'
 import { FaPlusCircle } from 'react-icons/fa'
 
-import { useAsync } from 'utils/useAsync'
+import { useCreateUser } from 'utils/users'
 import { UserObject } from 'types'
 
 const avatarArr = [
@@ -23,14 +23,8 @@ const avatarArr = [
 	'https://s.yimg.com/uu/api/res/1.2/994pBpnIKvwRQvU1RiAZzw--~B/Zmk9ZmlsbDtoPTM4Nzt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/Rh_OFEz8Hm2j5EA.2w5IkA--~B/aD01NTA7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/hss/storage/midas/e783c0c4a79dd1a9ceedb1090f52050e/201561495/cookie_monster_engadget_lede.png.cf.webp',
 ]
 
-const CreateUser = ({
-	onSubmit,
-	users,
-}: {
-	onSubmit: Function
-	users: UserObject[]
-}) => {
-	const { isLoading, run, setError, error, isError } = useAsync()
+const CreateUser = ({ users }: { users: UserObject[] }) => {
+	const { onSubmit, isLoading, run, setError, error, isError } = useCreateUser()
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
@@ -117,7 +111,19 @@ const CreateUser = ({
 						height: '100%',
 					}}
 				>
-					<CircleButton type='submit'>
+					<CircleButton
+						type='submit'
+						css={{
+							backgroundColor: 'white',
+							':hover,:focus': {
+								color: isLoading
+									? colors.gray80
+									: isError
+									? colors.danger
+									: colors.green,
+							},
+						}}
+					>
 						{isLoading ? <Spinner /> : <FaPlusCircle />}
 					</CircleButton>
 				</div>
