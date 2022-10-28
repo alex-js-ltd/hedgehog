@@ -47,7 +47,7 @@ const UserListUL = styled.ul({
 	},
 
 	[mq.small]: {
-		maxWidth: 'unset',
+		width: 'unset',
 
 		flexDirection: 'column',
 		overflowX: 'visible',
