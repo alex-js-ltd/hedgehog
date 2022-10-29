@@ -9,7 +9,7 @@ const handlers = [
 		let body = await req.json()
 
 		if (!body.email) {
-			return res(ctx.delay(delay), ctx.status(400), ctx.json('email required'))
+			return res(ctx.delay(delay), ctx.status(400))
 		}
 
 		if (!body.first_name) {
