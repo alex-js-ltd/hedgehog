@@ -35,14 +35,14 @@ afterEach(() => server.resetHandlers())
 
 const buildCreateUser = build({
 	fields: {
-		email: fake(faker => faker.internet.exampleEmail()),
+		email: fake(faker => faker.internet.email()),
 		first_name: fake(faker => faker.internet.userName()),
 		last_name: fake(faker => faker.internet.userName()),
 	},
 })
 
 test('submitting the form returns an error if the email already exists in react query', async () => {
-	const { email, first_name, last_name } = buildCreateUser()
+	const { first_name, last_name } = buildCreateUser()
 
 	render(<CreateUser users={mockData} />)
 
@@ -52,8 +52,23 @@ test('submitting the form returns an error if the email already exists in react 
 		userEvent.type(screen.getByLabelText(/Last Name/i), last_name)
 		userEvent.click(screen.getByRole('button'))
 
-		expect(screen.getByRole('alert').textContent).toMatchInlineSnapshot(
-			`"email already in use"`,
-		)
+		const error = screen.queryByText('email already in use')
+		expect(error).toBeInTheDocument()
+	})
+})
+
+test('submitting the form with a new email does not show an error message', async () => {
+	const { email, first_name, last_name } = buildCreateUser()
+
+	render(<CreateUser users={mockData} />)
+
+	await waitFor(() => {
+		userEvent.type(screen.getByLabelText(/email/i), email)
+		userEvent.type(screen.getByLabelText(/First Name/i), first_name)
+		userEvent.type(screen.getByLabelText(/Last Name/i), last_name)
+		userEvent.click(screen.getByRole('button'))
+
+		const error = screen.queryByText('email already in use')
+		expect(error).not.toBeInTheDocument()
 	})
 })
