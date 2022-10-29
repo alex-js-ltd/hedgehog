@@ -41,15 +41,19 @@ const buildCreateUser = build({
 	},
 })
 
-test('submitting the form creates a new user', async () => {
+test('submitting the form returns an error if the email already exists in react query', async () => {
 	const { email, first_name, last_name } = buildCreateUser()
 
 	render(<CreateUser users={mockData} />)
 
 	await waitFor(() => {
-		userEvent.type(screen.getByLabelText(/email/i), email)
+		userEvent.type(screen.getByLabelText(/email/i), 'george.bluth@reqres.in')
 		userEvent.type(screen.getByLabelText(/First Name/i), first_name)
 		userEvent.type(screen.getByLabelText(/Last Name/i), last_name)
 		userEvent.click(screen.getByRole('button'))
+
+		expect(screen.getByRole('alert').textContent).toMatchInlineSnapshot(
+			`"email already in use"`,
+		)
 	})
 })

@@ -13,19 +13,11 @@ const handlers = [
 		}
 
 		if (!body.first_name) {
-			return res(
-				ctx.delay(delay),
-				ctx.status(400),
-				ctx.json('First Name required'),
-			)
+			return res(ctx.delay(delay), ctx.status(400))
 		}
 
 		if (!body.last_name) {
-			return res(
-				ctx.delay(delay),
-				ctx.status(400),
-				ctx.json('Last Name required'),
-			)
+			return res(ctx.delay(delay), ctx.status(400))
 		}
 
 		return res(
