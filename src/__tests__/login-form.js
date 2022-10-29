@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from 'test/test-utils'
+import { render, screen, waitFor } from 'test/test-utils'
 import { LoginForm } from '../unauthenticated-app'
 import { Button } from 'comps/library'
 import userEvent from '@testing-library/user-event'
@@ -23,17 +23,16 @@ test('submitting the form calls onSubmit with email and password', async () => {
 			onSubmit={handleSubmit}
 			submitButton={<Button variant='primary'>Login</Button>}
 		/>,
-	)
+	),
+		await waitFor(() => {
+			userEvent.type(screen.getByLabelText(/email/i), email)
+			userEvent.type(screen.getByLabelText(/password/i), password)
+			userEvent.click(screen.getByRole('button', { name: /Login/i }))
 
-	await userEvent.type(screen.getByLabelText(/email/i), email)
-	await userEvent.type(screen.getByLabelText(/password/i), password)
-	await userEvent.click(screen.getByRole('button', { name: /Login/i }))
-
-	expect(handleSubmit).toHaveBeenCalledWith({
-		email,
-		password,
-	})
-	expect(handleSubmit).toHaveBeenCalledTimes(1)
-
-	screen.debug()
+			expect(handleSubmit).toHaveBeenCalledWith({
+				email,
+				password,
+			})
+			expect(handleSubmit).toHaveBeenCalledTimes(1)
+		})
 })
