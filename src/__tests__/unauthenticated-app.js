@@ -6,5 +6,9 @@ test('renders login / register page', async () => {
 
 	await waitForElementToBeRemoved(() => screen.getAllByLabelText(/loading/i))
 
-	screen.debug()
+	const loginButton = screen.getByRole('button', { name: /Login/i })
+	const registerButton = screen.getByRole('button', { name: /Register/i })
+
+	expect(loginButton).toBeInTheDocument()
+	expect(registerButton).toBeInTheDocument()
 })
