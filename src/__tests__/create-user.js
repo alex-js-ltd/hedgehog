@@ -7,8 +7,6 @@ import {
 import { CreateUser } from 'comps/create-user'
 import userEvent from '@testing-library/user-event'
 const { build, fake } = require('@jackfranklin/test-data-bot')
-import { setupServer } from 'msw/node'
-import { handlers } from 'test/server-handlers'
 
 const mockData = [
 	{
@@ -26,12 +24,6 @@ const mockData = [
 		avatar: 'https://reqres.in/img/faces/2-image.jpg',
 	},
 ]
-
-const server = setupServer(...handlers)
-
-beforeAll(() => server.listen())
-afterAll(() => server.close())
-afterEach(() => server.resetHandlers())
 
 const buildCreateUser = build({
 	fields: {
