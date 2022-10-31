@@ -63,4 +63,4 @@ const handlers = [
 	}),
 ]
 
-export { handlers }
+export { handlers, mockData }
