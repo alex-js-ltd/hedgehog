@@ -58,7 +58,7 @@ const mockData = {
 }
 
 const handlers = [
-	rest.get(`https://reqres.in/api/users?page=1`, async (req, res, ctx) => {
+	rest.get(`https://reqres.in/api/users`, async (req, res, ctx) => {
 		return res(ctx.delay(delay), ctx.json(mockData))
 	}),
 ]
