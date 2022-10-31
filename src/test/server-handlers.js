@@ -1,36 +1,68 @@
 import { rest } from 'msw'
 
-const delay = 150
+const delay = 0
 
 const apiURL = process.env.REACT_APP_API_URL
 
+const mockData = {
+	page: 1,
+	per_page: 6,
+	total: 12,
+	total_pages: 2,
+	data: [
+		{
+			id: 1,
+			email: 'george.bluth@reqres.in',
+			first_name: 'George',
+			last_name: 'Bluth',
+			avatar: 'https://reqres.in/img/faces/1-image.jpg',
+		},
+		{
+			id: 2,
+			email: 'janet.weaver@reqres.in',
+			first_name: 'Janet',
+			last_name: 'Weaver',
+			avatar: 'https://reqres.in/img/faces/2-image.jpg',
+		},
+		{
+			id: 3,
+			email: 'emma.wong@reqres.in',
+			first_name: 'Emma',
+			last_name: 'Wong',
+			avatar: 'https://reqres.in/img/faces/3-image.jpg',
+		},
+		{
+			id: 4,
+			email: 'eve.holt@reqres.in',
+			first_name: 'Eve',
+			last_name: 'Holt',
+			avatar: 'https://reqres.in/img/faces/4-image.jpg',
+		},
+		{
+			id: 5,
+			email: 'charles.morris@reqres.in',
+			first_name: 'Charles',
+			last_name: 'Morris',
+			avatar: 'https://reqres.in/img/faces/5-image.jpg',
+		},
+		{
+			id: 6,
+			email: 'tracey.ramos@reqres.in',
+			first_name: 'Tracey',
+			last_name: 'Ramos',
+			avatar: 'https://reqres.in/img/faces/6-image.jpg',
+		},
+	],
+	support: {
+		url: 'https://reqres.in/#support-heading',
+		text: 'To keep ReqRes free, contributions towards server costs are appreciated!',
+	},
+}
+
 const handlers = [
-	rest.post(`${apiURL}/users`, async (req, res, ctx) => {
-		let body = await req.json()
-
-		if (!body.email) {
-			return res(ctx.delay(delay), ctx.status(400))
-		}
-
-		if (!body.first_name) {
-			return res(ctx.delay(delay), ctx.status(400))
-		}
-
-		if (!body.last_name) {
-			return res(ctx.delay(delay), ctx.status(400))
-		}
-
-		return res(
-			ctx.delay(delay),
-			ctx.json({
-				id: '9999',
-				email: body.email,
-				first_name: body.first_name,
-				last_name: body.last_name,
-				avatar:
-					'https://helios-i.mashable.com/imagery/articles/072lIcNUyX8S7dErUXzHLuN/hero-image.fill.size_1248x702.v1623382106.jpg',
-			}),
-		)
+	rest.get(`https://reqres.in/api/users?page=1`, async (req, res, ctx) => {
+		console.log(res)
+		return res(ctx.delay(delay), ctx.json(mockData))
 	}),
 ]
 
