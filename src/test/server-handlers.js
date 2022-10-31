@@ -2,8 +2,6 @@ import { rest } from 'msw'
 
 const delay = 0
 
-const apiURL = process.env.REACT_APP_API_URL
-
 const mockData = {
 	page: 1,
 	per_page: 6,
@@ -61,7 +59,6 @@ const mockData = {
 
 const handlers = [
 	rest.get(`https://reqres.in/api/users?page=1`, async (req, res, ctx) => {
-		console.log(res)
 		return res(ctx.delay(delay), ctx.json(mockData))
 	}),
 ]
