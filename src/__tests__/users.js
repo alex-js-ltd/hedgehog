@@ -42,8 +42,6 @@ test('delete the first user', async () => {
 	await waitFor(() => {
 		userEvent.click(deleteButton)
 
-		waitForElementToBeRemoved(() =>
-			screen.queryByText('george.bluth@reqres.in'),
-		)
+		waitForElementToBeRemoved(() => screen.queryByText(mockData.data[0].email))
 	})
 })
