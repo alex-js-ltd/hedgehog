@@ -31,3 +31,17 @@ test('render user list without not_in_mock@gmail.com', async () => {
 		expect(screen.queryByText('not_in_mock@gmail.com')).not.toBeInTheDocument()
 	})
 })
+
+test('delete user', async () => {
+	render(<UsersScreen />)
+
+	const deleteButton = screen.getByRole('button', {
+		name: /remove-from-list-1/i,
+	})
+
+	await waitFor(() => {
+		userEvent.click(deleteButton)
+
+		waitForElementToBeRemoved(() => deleteButton)
+	})
+})
