@@ -31,17 +31,3 @@ test('render user list without not_in_mock@gmail.com', async () => {
 		expect(screen.queryByText('not_in_mock@gmail.com')).not.toBeInTheDocument()
 	})
 })
-
-test('delete the first user from the user list', async () => {
-	render(<UsersScreen />)
-
-	await waitFor(() => {
-		const button = screen.getByRole('button', { name: /remove-from-list-1/i })
-
-		userEvent.click(button)
-
-		waitForElementToBeRemoved(() =>
-			screen.queryByText(mockData.data[0].email),
-		).then(() => console.log(`${mockData.data[0].email} no longer in DOM`))
-	})
-})
