@@ -26,7 +26,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 			}}
 		>
 			<div
-				aria-labelledby={idString}
+				data-testid={idString}
 				css={{
 					minHeight: 270,
 					flexGrow: 2,
@@ -100,7 +100,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 				}}
 			>
 				<ActionButton
-					label='Remove from list'
+					label={`remove-from-list-${id}`}
 					highlight={colors.danger}
 					onClick={() => remove.mutateAsync()}
 					icon={<FaMinusCircle />}

@@ -61,6 +61,10 @@ const handlers = [
 	rest.get(`https://reqres.in/api/users`, async (req, res, ctx) => {
 		return res(ctx.delay(delay), ctx.json(mockData))
 	}),
+
+	rest.delete(`https://reqres.in/api/users/1`, async (req, res, ctx) => {
+		return res(ctx.delay(delay), ctx.json(null))
+	}),
 ]
 
 export { handlers, mockData }
