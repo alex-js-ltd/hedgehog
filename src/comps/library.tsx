@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
 import styled from '@emotion/styled/macro'
 import { keyframes, CSSObject } from '@emotion/react'
 import * as colors from 'styles/colors'
@@ -62,7 +61,6 @@ const UserListUL = styled.ul({
 
 	[mq.small]: {
 		width: 'unset',
-
 		flexDirection: 'column',
 		overflowX: 'visible',
 
@@ -111,7 +109,6 @@ const inputStyles = {
 }
 
 const Input = styled.input({ borderRadius: '3px' }, inputStyles)
-const Textarea = styled.textarea(inputStyles)
 
 const Dialog = styled(ReachDialog)({
 	maxWidth: '450px',
@@ -145,14 +142,6 @@ const FullPageSpinner = () => (
 	</div>
 )
 
-const Link = styled(RouterLink)({
-	color: colors.indigo,
-	':hover': {
-		color: colors.indigoDarken10,
-		textDecoration: 'underline',
-	},
-})
-
 type ErrVariant = { stacked: CSSObject; inline: CSSObject }
 
 const errorMessageVariants: ErrVariant = {
@@ -184,9 +173,7 @@ export {
 	Spinner,
 	Button,
 	Input,
-	Textarea,
 	Dialog,
 	FormGroup,
 	FullPageSpinner,
-	Link,
 }
