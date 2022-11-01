@@ -35,6 +35,20 @@ const UserListUL = styled.ul({
 	listStyle: 'none',
 	padding: '0',
 	display: 'flex',
+	scrollbarColor: '#999 #333',
+	'::-webkit-scrollbar': {
+		width: '2px',
+		height: '10px',
+	},
+
+	'::-webkit-scrollbar-thumb': {
+		background: colors.blue,
+		borderRadius: '4px',
+	},
+
+	'::-webkit-scrollbar-track-piece:end': {
+		marginRight: '20px',
+	},
 
 	li: {
 		flexShrink: 0,
