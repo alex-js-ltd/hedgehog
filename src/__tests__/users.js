@@ -32,7 +32,7 @@ test('render user list without not_in_mock@gmail.com', async () => {
 	})
 })
 
-test('delete user', async () => {
+test('delete the first user', async () => {
 	render(<UsersScreen />)
 
 	const deleteButton = screen.getByRole('button', {
@@ -42,6 +42,8 @@ test('delete user', async () => {
 	await waitFor(() => {
 		userEvent.click(deleteButton)
 
-		waitForElementToBeRemoved(() => deleteButton)
+		waitForElementToBeRemoved(() =>
+			screen.queryByText('george.bluth@reqres.in'),
+		)
 	})
 })
