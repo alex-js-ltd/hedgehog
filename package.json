@@ -49,7 +49,10 @@
 		]
 	},
 	"devDependencies": {
+		"@jackfranklin/test-data-bot": "^1.4.0",
+		"faker": "^5.5.3",
 		"@tanstack/react-query-devtools": "^4.13.0",
+		"msw": "^0.47.4",
 		"prettier": "^2.7.1"
 	}
 }
