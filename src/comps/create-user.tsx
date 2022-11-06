@@ -16,13 +16,6 @@ import { FaPlusCircle } from 'react-icons/fa'
 import { useCreateUser } from 'utils/users'
 import { UserObject } from 'types'
 
-const avatarArr = [
-	'https://helios-i.mashable.com/imagery/articles/072lIcNUyX8S7dErUXzHLuN/hero-image.fill.size_1248x702.v1623382106.jpg',
-	'https://miro.medium.com/max/1230/0*vwtmE6kZFO0rIq9o.',
-	'https://cdn.britannica.com/66/218266-050-77C3D624/Cookie-Monster-Sesame-Street-2016.jpg',
-	'https://s.yimg.com/uu/api/res/1.2/994pBpnIKvwRQvU1RiAZzw--~B/Zmk9ZmlsbDtoPTM4Nzt3PTY3NTthcHBpZD15dGFjaHlvbg--/https://s.yimg.com/uu/api/res/1.2/Rh_OFEz8Hm2j5EA.2w5IkA--~B/aD01NTA7dz05NjA7YXBwaWQ9eXRhY2h5b24-/https://o.aolcdn.com/hss/storage/midas/e783c0c4a79dd1a9ceedb1090f52050e/201561495/cookie_monster_engadget_lede.png.cf.webp',
-]
-
 const CreateUser = ({ users }: { users: UserObject[] }) => {
 	const { onSubmit, isLoading, run, setError, error, isError } = useCreateUser()
 
@@ -34,9 +27,10 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 			email: HTMLInputElement
 			first_name: HTMLInputElement
 			last_name: HTMLInputElement
+			avatar: HTMLInputElement
 		}
 
-		const { email, first_name, last_name } = formElements
+		const { email, first_name, last_name, avatar } = formElements
 
 		if (users?.some(e => e.email === email.value)) {
 			setError('email already in use')
@@ -48,7 +42,7 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 				email: email.value,
 				first_name: first_name.value,
 				last_name: last_name.value,
-				avatar: avatarArr[Math.floor(Math.random() * avatarArr.length)],
+				avatar: avatar?.files?.length ? avatar.files[0] : null,
 			}).then(() => form.reset()),
 		)
 	}
@@ -97,6 +91,11 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 					<FormGroup>
 						<label htmlFor='last_name'>Last Name</label>
 						<Input id='last_name' type='text' required />
+					</FormGroup>
+
+					<FormGroup>
+						<label htmlFor='avatar'>Avatar</label>
+						<Input id='avatar' type='file' />
 					</FormGroup>
 				</div>
 				<div

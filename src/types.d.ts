@@ -16,14 +16,14 @@ type UserObject = {
 	email: string
 	first_name: string
 	last_name: string
-	avatar: string
+	avatar: any
 }
 
 type PostUser = {
 	email: string
 	first_name: string
 	last_name: string
-	avatar?: string
+	avatar: File | null
 }
 
 type GetUsers = {

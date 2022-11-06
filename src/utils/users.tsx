@@ -3,8 +3,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
 import { useAsync } from './useAsync'
 import { PostUser, UserObject, GetUsers } from 'types'
-
 import userPlaceholderSvg from 'assets/user-placeholder.svg'
+import { toBase64 } from './base64'
 
 const loadingUser = {
 	first_name: 'Loading',
@@ -48,29 +48,32 @@ const useCreateUser = () => {
 					avatar,
 				},
 			}),
-		{
-			onSuccess: data => {
-				queryClient.setQueriesData(
-					['users'],
-					(oldData: GetUsers | undefined) => {
-						if (!oldData) return
-
-						let copyData = { ...oldData }
-
-						let userArr = [...copyData.data]
-
-						let newArr = [data, ...userArr]
-
-						copyData.data = newArr
-
-						return copyData
-					},
-				)
-			},
-		},
 	)
 
-	const onSubmit = (data: PostUser) => mutation.mutateAsync(data)
+	const onSubmit = (data: PostUser) =>
+		mutation.mutateAsync(data).then(async () => {
+			const avatar = await toBase64(data.avatar)
+
+			queryClient.setQueriesData(['users'], (oldData: GetUsers | undefined) => {
+				if (!oldData) return
+
+				const copyData = { ...oldData }
+
+				const userArr = [...copyData.data]
+
+				const userObject: UserObject = {
+					id: Math.floor(Math.random() * 100),
+					...data,
+					avatar: avatar,
+				}
+
+				const newArr = [userObject, ...userArr]
+
+				copyData.data = newArr
+
+				return copyData
+			})
+		})
 
 	const { isLoading, run, setError, error, isError } = useAsync()
 
