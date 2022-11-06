@@ -100,11 +100,11 @@ const useRemoveUser = (user: UserObject) => {
 					(oldData: GetUsers | undefined) => {
 						if (!oldData) return
 
-						let copyData = { ...oldData }
+						const copyData = { ...oldData }
 
-						let userArr = [...copyData.data]
+						const userArr = [...copyData.data]
 
-						let filterUserArr = userArr.filter(({ id }) => id !== user.id)
+						const filterUserArr = userArr.filter(({ id }) => id !== user.id)
 
 						copyData.data = filterUserArr
 
