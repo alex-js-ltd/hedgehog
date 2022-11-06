@@ -95,7 +95,7 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 
 					<FormGroup>
 						<label htmlFor='avatar'>Avatar</label>
-						<Input id='avatar' type='file' />
+						<Input id='avatar' type='file' required />
 					</FormGroup>
 				</div>
 				<div

@@ -48,32 +48,36 @@ const useCreateUser = () => {
 					avatar,
 				},
 			}),
+		{
+			async onSuccess(data, variables, context) {
+				const avatar = await toBase64(variables.avatar)
+
+				queryClient.setQueriesData(
+					['users'],
+					(oldData: GetUsers | undefined) => {
+						if (!oldData) return
+
+						const copyData = { ...oldData }
+
+						const userArr = [...copyData.data]
+
+						const userObject: UserObject = {
+							...data,
+							avatar: avatar,
+						}
+
+						const newArr = [userObject, ...userArr]
+
+						copyData.data = newArr
+
+						return copyData
+					},
+				)
+			},
+		},
 	)
 
-	const onSubmit = (data: PostUser) =>
-		mutation.mutateAsync(data).then(async () => {
-			const avatar = await toBase64(data.avatar)
-
-			queryClient.setQueriesData(['users'], (oldData: GetUsers | undefined) => {
-				if (!oldData) return
-
-				const copyData = { ...oldData }
-
-				const userArr = [...copyData.data]
-
-				const userObject: UserObject = {
-					id: Math.floor(Math.random() * 100),
-					...data,
-					avatar: avatar,
-				}
-
-				const newArr = [userObject, ...userArr]
-
-				copyData.data = newArr
-
-				return copyData
-			})
-		})
+	const onSubmit = (data: PostUser) => mutation.mutateAsync(data)
 
 	const { isLoading, run, setError, error, isError } = useAsync()
 
