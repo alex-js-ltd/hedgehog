@@ -33,19 +33,22 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 		event.preventDefault()
 		const form = event.currentTarget
 
-		const { email, first_name, last_name, avatar } = form
+		const email = form.elements.email.value
+		const first_name = form.elements.first_name.value
+		const last_name = form.elements.last_name.value
+		const avatar = form.elements.avatar.files
 
-		if (users?.some(e => e.email === email.value)) {
+		if (users?.some(e => e.email === email)) {
 			setError('email already in use')
 			return
 		}
 
 		run(
 			onSubmit({
-				email: email.value,
-				first_name: first_name.value,
-				last_name: last_name.value,
-				avatar: avatar?.files?.length ? avatar.files[0] : null,
+				email,
+				first_name,
+				last_name,
+				avatar: avatar?.length ? avatar[0] : null,
 			}).then(() => form.reset()),
 		)
 	}
