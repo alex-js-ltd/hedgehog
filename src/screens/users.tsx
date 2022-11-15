@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { useGetUsers } from 'utils/users'
 
 import { UserListUL } from 'comps/library'
@@ -16,21 +16,23 @@ const UsersScreen = () => {
 
 	return (
 		<div>
-			<UserListUL>
-				{users?.map((user: UserObject) => (
-					<li key={user.id} aria-label={user.email}>
-						<UserRow key={user.id} user={user} />
-					</li>
-				))}
-			</UserListUL>
-
 			{users?.length === 0 ? null : (
-				<Pagination
-					isLoading={isLoading}
-					total_pages={total_pages}
-					query={query}
-					setQuery={setQuery}
-				/>
+				<Fragment>
+					<UserListUL>
+						{users?.map((user: UserObject) => (
+							<li key={user.id} aria-label={user.email}>
+								<UserRow key={user.id} user={user} />
+							</li>
+						))}
+					</UserListUL>
+
+					<Pagination
+						isLoading={isLoading}
+						total_pages={total_pages}
+						query={query}
+						setQuery={setQuery}
+					/>
+				</Fragment>
 			)}
 
 			<CreateUser users={users} />
