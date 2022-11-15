@@ -19,18 +19,21 @@ import { UserObject } from 'types'
 const CreateUser = ({ users }: { users: UserObject[] }) => {
 	const { onSubmit, isLoading, run, setError, error, isError } = useCreateUser()
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	interface FormElements extends HTMLFormControlsCollection {
+		email: HTMLInputElement
+		first_name: HTMLInputElement
+		last_name: HTMLInputElement
+		avatar: HTMLInputElement
+	}
+	interface UserElements extends HTMLFormElement {
+		readonly elements: FormElements
+	}
+
+	const handleSubmit = (event: FormEvent<UserElements>) => {
 		event.preventDefault()
 		const form = event.currentTarget
 
-		const formElements = form.elements as typeof form.elements & {
-			email: HTMLInputElement
-			first_name: HTMLInputElement
-			last_name: HTMLInputElement
-			avatar: HTMLInputElement
-		}
-
-		const { email, first_name, last_name, avatar } = formElements
+		const { email, first_name, last_name, avatar } = form
 
 		if (users?.some(e => e.email === email.value)) {
 			setError('email already in use')
