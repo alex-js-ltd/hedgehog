@@ -72,7 +72,6 @@ const NavLabel = (props: HTMLAttributes<HTMLDivElement>) => {
 					height: '100%',
 					color: colors.text,
 					borderRadius: '2px',
-
 					borderLeft: `5px solid ${colors.darkBlue}`,
 					background: colors.gray10,
 					':hover': {

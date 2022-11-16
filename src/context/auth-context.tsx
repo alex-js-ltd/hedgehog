@@ -52,26 +52,19 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		run(userPromise)
 	}, [run])
 
-	const login = useCallback(
-		(form: FormData) => auth.login(form).then(user => setData(user)),
-		[setData],
-	)
+	const login = (form: FormData) => auth.login(form).then(user => setData(user))
 
-	const register = useCallback(
-		(form: FormData) => auth.register(form).then(user => setData(user)),
-		[setData],
-	)
+	const register = (form: FormData) => {
+		auth.register(form).then(user => setData(user))
+	}
 
-	const logout = useCallback(() => {
+	const logout = () => {
 		auth.logout()
 		queryClient.clear()
 		setData(null)
-	}, [setData])
+	}
 
-	const value = useMemo(
-		() => ({ user, login, logout, register }),
-		[login, logout, register, user],
-	)
+	const value = { user, login, register, logout }
 
 	return <AuthContext.Provider value={value}>{children} </AuthContext.Provider>
 }

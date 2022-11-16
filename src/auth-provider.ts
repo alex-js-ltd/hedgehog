@@ -10,7 +10,7 @@ function handleResponse(res: User, email: string) {
 		return
 	}
 
-	let user = { email, ...res }
+	const user = { email, ...res }
 
 	window.localStorage.setItem(localStorageKey, JSON.stringify(user))
 
