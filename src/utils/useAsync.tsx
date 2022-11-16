@@ -23,6 +23,7 @@ type State =
 function useSafeDispatch(dispatch: Dispatch<Action>) {
 	const mounted = useRef(false)
 
+	// dispatch function is called as soon as component has mounted without waiting for the browser to paint the screen
 	useLayoutEffect(() => {
 		mounted.current = true
 		return () => {
