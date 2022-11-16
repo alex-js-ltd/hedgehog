@@ -66,6 +66,12 @@ function useAsync() {
 
 	const run = useCallback(
 		(promise: Promise<any>) => {
+			if (!promise || !promise.then) {
+				throw new Error(
+					`The argument passed to useAsync().run must be a promise`,
+				)
+			}
+
 			dispatch({ type: 'pending' })
 
 			return promise.then(
