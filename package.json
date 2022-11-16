@@ -16,6 +16,7 @@
 		"@types/node": "^16.18.0",
 		"@types/react": "^18.0.22",
 		"@types/react-dom": "^18.0.7",
+		"bootstrap": "^5.2.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.6.0",
@@ -28,7 +29,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"profile": "yarn build --profile"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -50,8 +52,8 @@
 	},
 	"devDependencies": {
 		"@jackfranklin/test-data-bot": "^1.4.0",
-		"faker": "^5.5.3",
 		"@tanstack/react-query-devtools": "^4.13.0",
+		"faker": "^5.5.3",
 		"msw": "^0.47.4",
 		"prettier": "^2.7.1"
 	}
