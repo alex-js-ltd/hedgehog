@@ -19,7 +19,7 @@ const UsersScreen = () => {
 			{users?.length === 0 ? null : (
 				<Fragment>
 					<UserListUL>
-						{users?.map((user: UserObject) => (
+						{users.map((user: UserObject) => (
 							<li key={user.id} aria-label={user.email}>
 								<UserRow key={user.id} user={user} />
 							</li>
