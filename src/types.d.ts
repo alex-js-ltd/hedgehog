@@ -8,7 +8,7 @@ type FormData = {
 type Config = {
 	method: 'POST' | 'GET' | 'DELETE'
 	token?: string
-	data?: any
+	data?: PostUser
 }
 
 type UserObject = {
@@ -16,7 +16,7 @@ type UserObject = {
 	email: string
 	first_name: string
 	last_name: string
-	avatar: any
+	avatar: string
 }
 
 type PostUser = {
