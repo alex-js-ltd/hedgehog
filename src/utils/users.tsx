@@ -49,7 +49,7 @@ const useCreateUser = () => {
 				},
 			}),
 		{
-			async onSuccess(data, variables, context) {
+			async onSuccess(data, variables, _context) {
 				const avatar = await toBase64(variables.avatar)
 
 				queryClient.setQueriesData(
@@ -63,7 +63,7 @@ const useCreateUser = () => {
 
 						const userObject: UserObject = {
 							...data,
-							avatar: avatar,
+							avatar,
 						}
 
 						const newArr = [userObject, ...userArr]
