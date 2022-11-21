@@ -5,6 +5,7 @@ import {
 	ReactNode,
 	useCallback,
 	MouseEventHandler,
+	useMemo,
 } from 'react'
 import { queryClient } from 'context'
 import * as auth from 'auth-provider'
@@ -51,19 +52,26 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		run(userPromise)
 	}, [run])
 
-	const login = async (form: FormData) =>
-		auth.login(form).then(user => setData(user))
+	const login = useCallback(
+		async (form: FormData) => auth.login(form).then(user => setData(user)),
+		[setData],
+	)
 
-	const register = async (form: FormData) =>
-		auth.register(form).then(user => setData(user))
+	const register = useCallback(
+		async (form: FormData) => auth.register(form).then(user => setData(user)),
+		[setData],
+	)
 
-	const logout = () => {
+	const logout = useCallback(() => {
 		auth.logout()
 		queryClient.clear()
 		setData(null)
-	}
+	}, [setData])
 
-	const value = { user, login, register, logout }
+	const value = useMemo(
+		() => ({ user, login, logout, register }),
+		[login, logout, register, user],
+	)
 
 	return <AuthContext.Provider value={value}>{children} </AuthContext.Provider>
 }
