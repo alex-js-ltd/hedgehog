@@ -2,8 +2,11 @@ import * as React from 'react'
 import { useAuth } from './context/auth-context'
 import { FullPageSpinner } from 'comps/library'
 
-// authenticated app doesn't load until the user has logged in
-const AuthenticatedApp = React.lazy(() => import('./authenticated-app'))
+// the webpackPrefetch comment will request the authenticated-app bundle when the user clicks login / register
+const AuthenticatedApp = React.lazy(
+	() => import(/* webpackPrefetch: true */ './authenticated-app'),
+)
+
 const UnauthenticatedApp = React.lazy(() => import('./unauthenticated-app'))
 
 const App = () => {

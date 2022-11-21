@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
 
 const AppProviders = ({ children }: { children: ReactNode }) => (
 	<QueryClientProvider client={queryClient}>
-		<ReactQueryDevtools initialIsOpen={true} />
+		<ReactQueryDevtools initialIsOpen={false} />
 		<Router>
 			<AuthProvider>{children}</AuthProvider>
 		</Router>

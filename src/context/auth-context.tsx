@@ -52,11 +52,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		run(userPromise)
 	}, [run])
 
-	const login = (form: FormData) => auth.login(form).then(user => setData(user))
+	const login = async (form: FormData) =>
+		auth.login(form).then(user => setData(user))
 
-	const register = (form: FormData) => {
+	const register = async (form: FormData) =>
 		auth.register(form).then(user => setData(user))
-	}
 
 	const logout = () => {
 		auth.logout()
