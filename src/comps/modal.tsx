@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {
+import {
 	createContext,
 	cloneElement,
 	useContext,

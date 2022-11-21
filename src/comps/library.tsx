@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 
-import React from 'react'
 import styled from '@emotion/styled/macro'
 import { keyframes, CSSObject } from '@emotion/react'
 import * as colors from 'styles/colors'

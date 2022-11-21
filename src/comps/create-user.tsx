@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { FormEvent, Fragment } from 'react'
+import { FormEvent, Fragment } from 'react'
 
 import * as colors from 'styles/colors'
 import * as mq from 'styles/media-queries'

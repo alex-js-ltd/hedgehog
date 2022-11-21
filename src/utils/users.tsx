@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from 'context/auth-context'
 import { useAsync } from './useAsync'
@@ -30,7 +29,7 @@ const useGetUsers = (query: number) => {
 	return {
 		...result,
 		users: result.data?.data ?? loadingUsers,
-		total_pages: result?.data?.total_pages | 0,
+		total_pages: result?.data?.total_pages || 0,
 	}
 }
 

@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import * as React from 'react'
 
 const Logo = () => {
 	return (

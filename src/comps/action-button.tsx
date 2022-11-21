@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { FaTimesCircle } from 'react-icons/fa'
 
 import * as colors from 'styles/colors'

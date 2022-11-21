@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, { useState, Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import { useGetUsers } from 'utils/users'
 
 import { UserListUL } from 'comps/library'

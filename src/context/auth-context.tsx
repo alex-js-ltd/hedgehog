@@ -1,10 +1,9 @@
-import React, {
+import {
 	createContext,
 	useContext,
 	useEffect,
 	ReactNode,
 	useCallback,
-	useMemo,
 	MouseEventHandler,
 } from 'react'
 import { queryClient } from 'context'
