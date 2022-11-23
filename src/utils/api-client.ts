@@ -22,12 +22,7 @@ async function client(endpoint: string, { method, data, token }: Config) {
 			return Promise.reject('Please re-authenticate.')
 		}
 
-		// only returning because https://reqres.in/ DELETE req doesn't return any data
-		if (method === 'DELETE') {
-			return
-		}
-
-		const data = await response.json()
+		const data = method !== 'DELETE' ? await response.json() : null
 
 		if (response.ok) {
 			return data
