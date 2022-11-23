@@ -13,7 +13,6 @@ const UserRow = ({ user }: { user: UserObject }) => {
 	const { id, email, first_name, last_name, avatar } = user
 
 	const remove = useRemoveUser(user)
-	if (!id) return null
 
 	return (
 		<div
