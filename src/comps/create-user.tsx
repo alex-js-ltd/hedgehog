@@ -39,7 +39,7 @@ const CreateUser = ({ users }: { users: UserObject[] }) => {
 		const avatar = form.elements.avatar.files
 
 		if (users?.some(e => e.email === email)) {
-			setError('email already in use')
+			setError({ error: 'email already in use' })
 			return
 		}
 

@@ -79,7 +79,7 @@ function useAsync() {
 				data => {
 					dispatch({ type: 'resolved', data })
 				},
-				error => {
+				({ error }) => {
 					dispatch({ type: 'rejected', error })
 				},
 			)
@@ -93,7 +93,7 @@ function useAsync() {
 	)
 
 	const setError = useCallback(
-		(error: string) => dispatch({ type: 'rejected', error }),
+		({ error }: any) => dispatch({ type: 'rejected', error }),
 		[dispatch],
 	)
 

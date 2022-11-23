@@ -47,7 +47,7 @@ async function client(endpoint: string, data: FormData): Promise<User> {
 		if (response.ok) {
 			return data
 		} else {
-			return Promise.reject('try using eve.holt@reqres.in')
+			return Promise.reject(data)
 		}
 	})
 }
