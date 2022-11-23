@@ -50,12 +50,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		run(userPromise)
 	}, [run])
 
-	const login = async (form: FormData) =>
-		auth.login(form).then(user => setData(user))
-
-	const register = async (form: FormData) =>
-		auth.register(form).then(user => setData(user))
-
+	const login = (form: FormData) => {
+		return auth.login(form).then(user => setData(user))
+	}
+	const register = (form: FormData) => {
+		return auth.register(form).then(user => setData(user))
+	}
 	const logout = () => {
 		auth.logout()
 		queryClient.clear()
