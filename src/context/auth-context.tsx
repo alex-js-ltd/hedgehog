@@ -3,14 +3,13 @@ import {
 	useContext,
 	useEffect,
 	ReactNode,
-	useCallback,
 	MouseEventHandler,
 } from 'react'
 import { queryClient } from 'context'
 import * as auth from 'auth-provider'
-import { client } from 'utils/api-client'
+
 import { useAsync } from 'utils/useAsync'
-import { User, FormData, Config } from 'types'
+import { User, FormData } from 'types'
 
 type AuthProviderProps = { children: ReactNode }
 
@@ -76,15 +75,4 @@ const useAuth = () => {
 	return context
 }
 
-const useClient = () => {
-	const { user } = useAuth()
-	const token = user?.token
-
-	return useCallback(
-		(endpoint: string, config: Config) =>
-			client(endpoint, { ...config, token }),
-		[token],
-	)
-}
-
-export { AuthProvider, useAuth, useClient }
+export { AuthProvider, useAuth }

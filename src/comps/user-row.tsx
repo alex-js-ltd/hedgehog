@@ -12,9 +12,8 @@ import { UserObject } from 'types'
 const UserRow = ({ user }: { user: UserObject }) => {
 	const { id, email, first_name, last_name, avatar } = user
 
-	const idString = `${id}`
-
 	const remove = useRemoveUser(user)
+	if (!id) return null
 
 	return (
 		<div
@@ -26,7 +25,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 			}}
 		>
 			<div
-				data-testid={idString}
+				data-testid={`${id}`}
 				css={{
 					minHeight: 270,
 					flexGrow: 2,
@@ -62,7 +61,7 @@ const UserRow = ({ user }: { user: UserObject }) => {
 					<div css={{ display: 'flex', justifyContent: 'space-between' }}>
 						<div css={{ flex: 1 }}>
 							<h2
-								id={idString}
+								id={`${id}`}
 								css={{
 									fontSize: '1.25em',
 									margin: '0',

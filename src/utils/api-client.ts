@@ -1,12 +1,9 @@
 import { queryClient } from 'context'
 import * as auth from 'auth-provider'
-import { Config } from 'types'
+import { Config, GetUsers, PostUser, UserObject } from 'types'
 const apiURL = process.env.REACT_APP_API_URL
 
-async function client(
-	endpoint: string,
-	{ method, data, token }: Config,
-): Promise<any> {
+async function client(endpoint: string, { method, data, token }: Config) {
 	const config = {
 		method: method,
 		body: data ? JSON.stringify(data) : undefined,
@@ -40,4 +37,20 @@ async function client(
 	})
 }
 
-export { client }
+const read = (endpoint: string, token?: string): Promise<GetUsers> => {
+	return client(endpoint, { method: 'GET', token })
+}
+
+const create = (
+	endpoint: string,
+	data: PostUser,
+	token?: string,
+): Promise<UserObject> => {
+	return client(endpoint, { method: 'POST', data, token })
+}
+
+const remove = (endpoint: string, token?: string): Promise<void> => {
+	return client(endpoint, { method: 'DELETE', token })
+}
+
+export { read, create, remove }
