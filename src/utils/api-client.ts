@@ -32,19 +32,19 @@ async function client(endpoint: string, { method, data, token }: Config) {
 	})
 }
 
-const read = (endpoint: string, token?: string): Promise<GetUsers> => {
+function read(endpoint: string, token?: string): Promise<GetUsers> {
 	return client(endpoint, { method: 'GET', token })
 }
 
-const create = (
+function create(
 	endpoint: string,
 	data: PostUser,
 	token?: string,
-): Promise<UserObject> => {
+): Promise<UserObject> {
 	return client(endpoint, { method: 'POST', data, token })
 }
 
-const remove = (endpoint: string, token?: string): Promise<void> => {
+function remove(endpoint: string, token?: string): Promise<void> {
 	return client(endpoint, { method: 'DELETE', token })
 }
 
